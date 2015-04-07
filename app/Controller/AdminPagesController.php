@@ -9,13 +9,8 @@ class AdminPagesController extends AppController {
     }
 
     public function isAuthorized($user) {
-        if (in_array($this->action, array('admin_home'))) {
-            $userRoleStudio = $this->UserRoleStudio->find('first', array('conditions'=>array('user_id'=>$user['id'], 'role_id = 10')));
-            if (count($userRoleStudio)>0) {
-                return true;
-            }
-        }
-        return parent::isAuthorized($user);
+        if ($this->isAuthorizedByRole($user, array('admin_home'), $this->MANAGER)) return true;
+        return parent::isAdmin($user);
     }
 
     function admin_home() {

@@ -15,21 +15,24 @@ class ManualsController extends AppController {
     }
 
     public function isAuthorized($user) {
-        $userRoleStudio = $this->UserRoleStudio->find('first', array('conditions'=>array('user_id'=>$user['id'])));
-        if (count($userRoleStudio)>0) {
-            $userRoleStudio = $this->UserRoleStudio->find('first', array('conditions'=>array('user_id'=>$user['id'], 'role_id = 10')));
-            if (count($userRoleStudio)>0 && in_array($this->action, array('index', 'view', 'add', 'edit', 'delete', 'show'))) {
-                return true;
-            }
-            if (in_array($this->action, array('show', 'manual'))) {
-                $manual = $this->Manual->findById($this->request->params['pass'][0]);
+//        $userRoleStudio = $this->UserRoleStudio->find('first', array('conditions'=>array('user_id'=>$user['id'])));
+//        if (count($userRoleStudio)>0) {
+//            $userRoleStudio = $this->UserRoleStudio->find('first', array('conditions'=>array('user_id'=>$user['id'], 'role_id = 10')));
+//            if (count($userRoleStudio)>0 && in_array($this->action, array('index', 'view', 'add', 'edit', 'delete', 'show'))) {
+//                return true;
+//            }
+//            if (in_array($this->action, array('show', 'manual'))) {
+//                $manual = $this->Manual->findById($this->request->params['pass'][0]);
+//
+//                //if (count($manual) > 0 && $this->hasManualAccess($this->Auth->user('id'), $manual['Manual']['role_type_id'])) {
+//                    return true;
+//                //}
+//            }
+//        }
+//        if ($this->isAuthorizedByRole($user, array('show', 'manual'), $this->ADMIN)) return true;
+//        if ($this->isAuthorizedByRole($user, array('index', 'view', 'add', 'edit', 'delete', 'show', 'manual'), $this->ADMIN)) return true;
 
-                if (count($manual) > 0 && $this->hasManualAccess($this->Auth->user('id'), $manual['Manual']['role_type_id'])) {
-                    return true;
-                }
-            }
-        }
-        return parent::isAuthorized($user);
+        return parent::isAdmin($user);
     }
 
 /**
@@ -78,8 +81,6 @@ class ManualsController extends AppController {
 
 
 	public function add() {
-        $roleTypes = $this->Manual->RoleType->find('list');
-        $this->set(compact('roleTypes'));
 		if ($this->request->is('post') &&
 		    !empty($this->data) &&
             is_uploaded_file($this->data['Manual']['data']['tmp_name'])) {
@@ -102,13 +103,12 @@ class ManualsController extends AppController {
 
             //create manual object
             $manual = array(
-                            'Manual'=>array('name'=>$this->data['Manual']['name'],
-                                            'description'=>$this->data['Manual']['description'],
-                                            'role_type_id'=>$this->data['Manual']['role_type_id'],
-                                            'type'=>$fileType,
-                                            'data'=>$fileData
-                                            )
-                            );
+                'Manual'=>array('name'=>$this->data['Manual']['name'],
+                                'description'=>$this->data['Manual']['description'],
+                                'type'=>$fileType,
+                                'data'=>$fileData
+                                )
+                );
 
             //save to the database
             if ($this->Manual->save($manual)) {
@@ -145,8 +145,6 @@ class ManualsController extends AppController {
 			$options = array('conditions' => array('Manual.' . $this->Manual->primaryKey => $id));
 			$this->request->data = $this->Manual->find('first', $options);
 		}
-		$roleTypes = $this->Manual->RoleType->find('list');
-		$this->set(compact('roleTypes'));
 	}
 
 /**

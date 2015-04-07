@@ -18,10 +18,6 @@
             <label style="display: block; float: left; width: 140px;">Description:</label>
             <?php echo $this->Form->textarea('description', array('label'=>'', 'cols'=>'50', 'rows'=>5)); ?>
         </li>
-        <li class="input-group list-group-item">
-            <label style="display: block; float: left; width: 140px;">Access Role Type:</label>
-            <?php echo $this->Form->input('role_type_id', array('label'=>'')); ?>
-        </li>
     </ul>
 <?php echo $this->Form->end(__('Submit')); ?>
 </div>

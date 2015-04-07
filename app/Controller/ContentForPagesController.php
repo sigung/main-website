@@ -9,16 +9,7 @@ class ContentForPagesController extends AppController {
     }
 
     public function isAuthorized($user) {
-        $userRoleStudio = $this->UserRoleStudio->find('first', array('conditions'=>array('user_id'=>$user['id'])));
-        if (count($userRoleStudio)>0) {
-            if (in_array($this->action, array('edit'))) {
-                $userRoleStudio = $this->UserRoleStudio->find('first', array('conditions'=>array('user_id'=>$user['id'], 'role_id'=>5)));
-                if (count($userRoleStudio)>0) {
-                    return true;
-                }
-            }
-        }
-        return parent::isAuthorized($user);
+        return parent::isAdmin($user);
     }
 
     public function edit() {

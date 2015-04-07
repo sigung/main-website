@@ -23,17 +23,9 @@ class UsersController extends AppController {
         if (in_array($this->action, array('user_home', 'account', 'extra'))) {
             return true;
         }
-        $userRoleStudio = $this->UserRoleStudio->find('first', array('conditions'=>array('user_id'=>$user['id'])));
-        if (count($userRoleStudio)>0) {
-            if (in_array($this->action, array('learn', 'play', 'train', 'record', 'account'))) {
-                return true;
-            }
-            $userRoleStudio = $this->UserRoleStudio->find('first', array('conditions'=>array('user_id'=>$user['id'], 'role_id = 10')));
-            if (count($userRoleStudio)>0 && in_array($this->action, array('user_management', 'edit', 'delete', 'ajax_add_role', 'ajax_delete_role', 'activate', 'disable'))) {
-                return true;
-            }
-        }
-        return parent::isAuthorized($user);
+        if ($this->isAuthorizedByRole($user, array('learn', 'play', 'train', 'record'), $this->STUDENT)) return true;
+        if ($this->isAuthorizedByRole($user, array('user_management', 'edit'), $this->MANAGER)) return true;
+        return parent::isAdmin($user);
     }
 
     public function login() {
@@ -87,7 +79,7 @@ class UsersController extends AppController {
         if (isset($this->params['data']['User'])) {
             $fnameFilter = $this->params['data']['User']['fnfilter'];
             $lnameFilter = $this->params['data']['User']['lnfilter'];
-            $mroleFilter = $this->params['data']['User']['mrfilter'];
+            $mroleFilter = isset($this->params['data']['User']['mrfilter'])?$this->params['data']['User']['mrfilter']:null;
             $kfroleFilter = $this->params['data']['User']['kfrfilter'];
             $tcroleFilter = $this->params['data']['User']['tcrfilter'];
             $studioFilter = $this->params['data']['User']['sfilter'];
@@ -105,7 +97,10 @@ class UsersController extends AppController {
         $mrRoleData = $this->Role->find('list', array('fields' => array('id', 'name'),/*'conditions'=>array('id in '),*/'order'=>'id ASC'));
         $kfRankData = $this->KungFuRank->find('list', array('fields' => array('id', 'name'),'order'=>'id ASC'));
         $tcRankData = $this->TaiChiRank->find('list', array('fields' => array('id', 'name'),'order'=>'id ASC'));
-        $studioData = $this->Studio->find('list', array('fields' => array('id', 'name'), 'order'=>'id ASC'));
+
+        $user = $this->User->find('first', array('conditions'=>array('User.id'=>$this->Auth->user('id'))));
+        $studioConditions = $this->makeStudioConditions($user);
+        $studioData = $this->Studio->find('list', array('fields' => array('id', 'name'), 'conditions'=>$studioConditions, 'order'=>'id ASC'));
         $statusData = $this->Status->find('list', array('fields' => array('id', 'name'), 'order'=>'id ASC'));
 
         $this->set('mrroles', $mrRoleData);
@@ -124,7 +119,8 @@ class UsersController extends AppController {
                   'alias' => 'UserRoleStudio',
                   'type' => 'left',
                   'conditions' => array(
-                      'UserRoleStudio.user_id = User.id'
+                      'UserRoleStudio.user_id = User.id',
+                      'UserRoleStudio.studio_id'=>$studioConditions['id']
                    )
                  )
              ),
@@ -135,6 +131,17 @@ class UsersController extends AppController {
         );
         $users = $this->paginate('User');
         $this->set(compact('users'));
+    }
+
+    private function makeStudioConditions($user) {
+        $userRolesCount = $this->UserRoleStudio->find('count', array('conditions'=>array('user_id'=>$user['User']['id'], 'role_id'=>$this->ADMIN)));
+        if ($userRolesCount>0) return array('id'=>$this->ALLSTUDIOS);
+        $userRoleStudios= $this->UserRoleStudio->find('all', array('conditions'=>array('user_id'=>$user['User']['id'], 'role_id'=>$this->MANAGER)));
+        $studioArray = array();
+        foreach($userRoleStudios as $usr) {
+            $studioArray[] = $usr['UserRoleStudio']['studio_id'];
+        }
+        return array('id'=>$studioArray);
     }
 
     public function user_home() {}

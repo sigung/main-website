@@ -31,6 +31,18 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+    public $STUDENT = array(1);
+    public $INSTRUCTOR = array(2);
+    public $INSTRUCTORS_COLLEGE = array(3);
+    public $OFFICE_MANAGER = array(4);
+    public $DISTRICT_MANAGER = array(5);
+    public $ADMIN = array(10);
+    public $MANAGER = array(4,5,10);
+
+    public $GLENDALE = array(1);
+    public $SANDY = array(2);
+    public $TAYLORSVILLE = array(3);
+    public $ALLSTUDIOS = array(1,2,3);
 
     public $components = array(
         'Session',
@@ -53,14 +65,21 @@ class AppController extends Controller {
         )
     );
 
-    public function isAuthorized($user) {
-        // Admin can access every action
-
-        if (isset($user['role_id']) && $user['role_id'] === 6) {
+    public function isAdmin($user) {
+        $userRolesCount = $this->UserRoleStudio->find('count', array('conditions'=>array('user_id'=>$user['id'], 'role_id'=>$this->ADMIN)));
+        if ($userRolesCount>0) {
             return true;
         }
+        return false;
+    }
 
-        // Default deny
+    public function isAuthorizedByRole($user, $actions, $validIds) {
+        if (in_array($this->action, $actions)) {
+            $userRolesCount = $this->UserRoleStudio->find('count', array('conditions'=>array('user_id'=>$user['id'], 'role_id'=>$validIds)));
+            if ($userRolesCount>0) {
+                return true;
+            }
+        }
         return false;
     }
 

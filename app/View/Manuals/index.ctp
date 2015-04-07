@@ -11,16 +11,12 @@
 	<tr>
         <th>Name</th>
         <th>Description</th>
-        <th>Role Type</th>
         <th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php foreach ($manuals as $manual): ?>
 	<tr>
 		<td><div style="width:180px"><?php echo h($manual['Manual']['name']); ?>&nbsp;</div></td>
 		<td><div style="width:250px"><?php echo h($manual['Manual']['description']); ?>&nbsp;</div></td>
-		<td>
-            <div style="width:180px"><?php echo $manual['RoleType']['name'] ?></div>
-		</td>
 		<td class="actions" style="font-size:8px;">
             <div style="width:90px">
                 <?php echo $this->Html->link(__('View'), array('action' => 'show', $manual['Manual']['id']), array('style'=>'font-size:8px;', 'target'=>'_blank')); ?>

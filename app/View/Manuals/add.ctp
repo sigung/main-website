@@ -17,10 +17,6 @@
             <label style="display: block; float: left; width: 140px;">File:</label>
             <?php echo $this->Form->input('data', array('type'=>'file', 'accept'=>'image/jpeg,image/gif,image/png,application/pdf', 'label'=>'')); ?>
         </li>
-        <li class="input-group list-group-item">
-            <label style="display: block; float: left; width: 140px;">Access Role Type:</label>
-            <?php echo $this->Form->input('role_type_id', array('label'=>'')); ?>
-        </li>
     </ul>
 <?php echo $this->Form->end(__('Submit')); ?>
 </div>

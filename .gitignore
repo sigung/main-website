@@ -11,9 +11,15 @@
 /dist
 /tags
 /.idea
+/vendors/bin/
+/vendors/PHPUnit/composer/
+/vendors/PHPUnit/
+/vendors/symfony
+/Plugin
 .editorconfig
 .travis.yml
 build.properties
+composer.lock
 ShaolinArts.iml
 
 # OS generated files #

@@ -29,7 +29,7 @@
 <h3 style="margin:0 50px 0 50px;">"Don't only practise your art, but force your way into its secrets; art deserves that, for it and knowledge can raise man to the Divine."<span style="font-size:10px;">~Ludwig van Beethoven</span></h3>
 
 <ul class='home_links'>
-    <?php if ($this->User->isStudent(AuthComponent::user('id'))) {  ?>
+    <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->STUDENT)) {  ?>
     <li>
         <div style="height:190px;">
             <?php echo $this->Html->link($this->Html->image('userImages/train.png', array('alt' => 'Train', 'border' => '0', 'height'=>'170', 'style'=>'border:none;')), '/students/train', array('escape' => false)) ?>
@@ -67,7 +67,7 @@
         </div>
         <p style="text-align:center; font-weight:bold;">Account</p>
     </li>
-    <?php if ($this->User->isAdmin(AuthComponent::user('id'))) {  ?>
+    <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->MANAGER)) {  ?>
     <li>
         <div style="height:190px;">
             <?php echo $this->Html->link($this->Html->image('userImages/admin.png', array('alt' => 'Account', 'border' => '0', 'width' => '225', 'style'=>'border:none;')), '/admin_pages/admin_home', array('escape' => false)) ?>

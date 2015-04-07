@@ -30,13 +30,23 @@
             </li>
             <li class="input-group list-group-item">
                 <label class="login_label">Kung Fu Rank:</label>
-                <?php echo $this->Form->input('KungFuRank.id', array('options' => $kungFuRanks, 'label'=>'')); ?>
-                <?php echo $this->Form->input('kung_fu_rank_date', array('dateFormat'=>'DMY', 'minYear'=>date('Y')-110, 'maxYear'=>date('Y'), 'empty'=>array('- -'), 'maxLength' => 32, 'title' => 'Kung Fu Rank Date', 'label'=>'')); ?>
+                <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->ADMIN)) { ?>
+                    <?php echo $this->Form->input('KungFuRank.id', array('options' => $kungFuRanks, 'label'=>'')); ?>
+                    <?php echo $this->Form->input('kung_fu_rank_date', array('dateFormat'=>'DMY', 'minYear'=>date('Y')-110, 'maxYear'=>date('Y'), 'empty'=>array('- -'), 'maxLength' => 32, 'title' => 'Kung Fu Rank Date', 'label'=>'')); ?>
+                <?php } else  { ?>
+                    <?php echo $this->Form->input('KungFuRank.id', array('options' => $kungFuRanks, 'label'=>'', 'disabled'=>'disabled')); ?>
+                    <?php echo $this->Form->input('kung_fu_rank_date', array('dateFormat'=>'DMY', 'minYear'=>date('Y')-110, 'maxYear'=>date('Y'), 'empty'=>array('- -'), 'maxLength' => 32, 'title' => 'Kung Fu Rank Date', 'label'=>'', 'disabled'=>'disabled')); ?>
+                <?php } ?>
             </li>
             <li class="input-group list-group-item">
                 <label class="login_label">TaiChi Rank:</label>
-                <?php echo $this->Form->input('TaiChiRank.id', array('options' => $taiChiRanks, 'label'=>'')); ?>
-                <?php echo $this->Form->input('tai_chi_rank_date', array('dateFormat'=>'DMY', 'minYear'=>date('Y')-110, 'maxYear'=>date('Y'), 'empty'=>array('- -'), 'maxLength' => 32, 'title' => 'Tai Chi Rank Date', 'label'=>'')); ?>
+                <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->ADMIN)) { ?>
+                    <?php echo $this->Form->input('TaiChiRank.id', array('options' => $taiChiRanks, 'label'=>'')); ?>
+                    <?php echo $this->Form->input('tai_chi_rank_date', array('dateFormat'=>'DMY', 'minYear'=>date('Y')-110, 'maxYear'=>date('Y'), 'empty'=>array('- -'), 'maxLength' => 32, 'title' => 'Tai Chi Rank Date', 'label'=>'')); ?>
+                <?php } else  { ?>
+                    <?php echo $this->Form->input('TaiChiRank.id', array('options' => $kungFuRanks, 'label'=>'', 'disabled'=>'disabled')); ?>
+                    <?php echo $this->Form->input('tai_chi_rank_date', array('dateFormat'=>'DMY', 'minYear'=>date('Y')-110, 'maxYear'=>date('Y'), 'empty'=>array('- -'), 'maxLength' => 32, 'title' => 'Kung Fu Rank Date', 'label'=>'', 'disabled'=>'disabled')); ?>
+                <?php } ?>
             </li>
             <li class="input-group list-group-item">
                 <label class="login_label">Home Phone:</label>
@@ -99,19 +109,25 @@
                         ?>
                     <?php } ?>
                 </iframe>
-                <?php echo $this->Form->postLink(__('Delete Photo'), array('controller'=>'photos', 'action' => 'delete', $photoId), array(), __('Are you sure you want to delete this photo?', $photoId)); ?>
+                <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->ADMIN)) { ?>
+                    <?php echo $this->Form->postLink(__('Delete Photo'), array('controller'=>'photos', 'action' => 'delete', $photoId), array(), __('Are you sure you want to delete this photo?', $photoId)); ?>
+                <?php } ?>
             <?php } else { ?>
-            <?php echo $this->Form->create('Photo', array('type' => 'file', 'url'=>'/photos/add')); ?>
-            <?php echo $this->Form->hidden('User.id', array('value'=>$this->data['User']['id'])); ?>
-            <ul class="list-group">
-                <li class="input-group list-group-item">
-                    <label style="display: block; float: left; width: 140px;"></label>
-                    <?php echo $this->Form->input('data', array('type'=>'file', 'accept'=>'image/jpeg,image/gif,image/png', 'label'=>'')); ?>
-                </li>
-            </ul>
-            <?php echo $this->Form->end(__('Add')); ?>
+                <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->ADMIN)) { ?>
+                    <?php echo $this->Form->create('Photo', array('type' => 'file', 'url'=>'/photos/add')); ?>
+                    <?php echo $this->Form->hidden('User.id', array('value'=>$this->data['User']['id'])); ?>
+                    <ul class="list-group">
+                        <li class="input-group list-group-item">
+                            <label style="display: block; float: left; width: 140px;"></label>
+                            <?php echo $this->Form->input('data', array('type'=>'file', 'accept'=>'image/jpeg,image/gif,image/png', 'label'=>'')); ?>
+                        </li>
+                    </ul>
+                    <?php echo $this->Form->end(__('Add')); ?>
+                <?php } ?>
             <?php } ?>
         </div>
+        <br>
+        <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->ADMIN)) { ?>
         <div id="roles">
             <h4>This user has the following roles:</h4>
 
@@ -268,5 +284,6 @@
                 </ul>
             </div>
         </div>
+        <?php } ?>
     </div>
 </fieldset>

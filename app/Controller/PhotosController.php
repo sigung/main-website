@@ -14,18 +14,9 @@ class PhotosController extends AppController {
     }
 
     public function isAuthorized($user) {
-        $userRoleStudio = $this->UserRoleStudio->find('first', array('conditions'=>array('user_id'=>$user['id'])));
-        if (count($userRoleStudio)>0) {
-            $userRoleStudio = $this->UserRoleStudio->find('first', array('conditions'=>array('user_id'=>$user['id'], 'role_id = 10')));
-            if (count($userRoleStudio)>0 && in_array($this->action, array('photo'))) {
-                return true;
-            }
-            $userRoleStudio = $this->UserRoleStudio->find('first', array('conditions'=>array('user_id'=>$user['id'], 'role_id = 10')));
-            if (count($userRoleStudio)>0 && in_array($this->action, array('add', 'edit', 'delete'))) {
-                return true;
-            }
-        }
-        return parent::isAuthorized($user);
+        //if ($this->isAuthorizedByRole($user, array('photo'), $this->ADMIN)) return true;
+        //if ($this->isAuthorizedByRole($user, array('edit', 'delete', 'add'), $this->ADMIN)) return true;
+        return parent::isAdmin($user);
     }
 
 	public function add() {

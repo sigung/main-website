@@ -20,7 +20,9 @@
         <tr>
             <td style="white-space: nowrap;">First Name</td>
             <td style="white-space: nowrap;">Last Name</td>
-            <td>Manager</td>
+            <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->ADMIN)) { ?>
+            <td>Role</td>
+            <?php } ?>
             <td>Kung Fu</td>
             <td>Tai Chi</td>
             <td>Studio</td>
@@ -30,7 +32,9 @@
             <?php echo $this->Form->create('User', array('action'=>'user_management')); ?>
             <td><?php echo $this->Form->input('fnfilter', array('label'=>'', 'style'=>'font-size:8px; width:50px; height:20px;')); ?></td>
             <td><?php echo $this->Form->input('lnfilter', array('label'=>'', 'style'=>'font-size:8px; width:50px; height:20px;')); ?></td>
-            <td><?php echo $this->Form->input('mrfilter', array('empty'=>'Choose Manager Role', 'options' => $mrroles, 'label'=>'', 'style'=>'font-size:8px; width:150px; height:20px; white-space: nowrap;')); ?></td>
+            <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->ADMIN)) { ?>
+            <td><?php echo $this->Form->input('mrfilter', array('empty'=>'Choose Role', 'options' => $mrroles, 'label'=>'', 'style'=>'font-size:8px; width:150px; height:20px; white-space: nowrap;')); ?></td>
+            <?php }?>
             <td><?php echo $this->Form->input('kfrfilter', array('empty'=>'Choose Kung Fu Rank', 'options' => $kfranks, 'label'=>'', 'style'=>'font-size:8px; width:150px; height:20px;')); ?></td>
             <td><?php echo $this->Form->input('tcrfilter', array('empty'=>'Choose Tai Chi Rank', 'options' => $tcranks, 'label'=>'', 'style'=>'font-size:8px; width:150px; height:20px;')); ?></td>
             <td><?php echo $this->Form->input('sfilter', array('empty'=>'Choose Studio', 'options' => $studios, 'label'=>'', 'style'=>'font-size:8px; width:150px; height:20px;')); ?></td>
@@ -50,7 +54,9 @@
         <tr>
             <th><?php echo $this->Paginator->sort('UserInfo.fname', 'First');?></th>
             <th><?php echo $this->Paginator->sort('UserInfo.lname', 'Last');?></th>
+            <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->ADMIN)) { ?>
             <th>Role</th>
+            <?php } ?>
             <th><?php echo $this->Paginator->sort('KungFuRank.name', 'KF');?></th>
             <th><?php echo $this->Paginator->sort('TaiChiRank.name', 'TC');?></th>
             <th style="white-space: nowrap;">Email/Phone</th>
@@ -58,7 +64,7 @@
             <th style="white-space: nowrap;">Spouse Guardian</th>
             <th><?php echo $this->Paginator->sort('UserInfo.birthdate', 'Birthday');?></th>
             <th><?php echo $this->Paginator->sort('Status.name', 'Status');?></th>
-            <th><?php if ($this->User->isManager(AuthComponent::user('id'))) {  ?>Actions<?php } ?></th>
+            <th><?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->MANAGER)) { ?>Actions<?php } ?></th>
         </tr>
         </thead>
         <tbody>
@@ -70,6 +76,7 @@
             <?php endif; ?>
             <td><div style="width:80px"><?php echo $user['UserInfo']['fname']; ?></div></td>
             <td><div style="width:80px"><?php echo $user['UserInfo']['lname']; ?></div></td>
+            <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->ADMIN)) { ?>
             <td>
                 <?php foreach ($user['UserRoleStudio'] as $urs) { ?>
                     <div style="white-space: nowrap;">
@@ -81,6 +88,7 @@
                     </div>
                 <?php } ?>
             </td>
+            <?php } ?>
             <td>
                 <?php echo $user['KungFuRank']['name']; ?>
             </td>
@@ -124,15 +132,18 @@
                 <div style="width:50px;"><?php echo $user['Status']['name']; ?></div>
             </td>
             <td style="font-size:8px;">
-                <?php if ($this->User->isManager(AuthComponent::user('id'))) {  ?>
+                <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->MANAGER)) { ?>
                 <div style="width:90px">
-                    <?php echo $this->Html->link("Edit", array('action'=>'edit', $user['User']['id']), array('style'=>'font-size:8px;')); ?> |
-                    <?php echo $this->Html->link( "Delete", array('action'=>'delete', $user['User']['id']), array('style'=>'font-size:8px;',
-                                                    'onclick'=>'return confirm("Are you sure you want to delete this user?")'));?> |
-                    <?php if ($user['Status']['id'] != 3) { ?>
-                        <?php echo $this->Html->link("Activate", array('action'=>'activate', $user['User']['id']), array('style'=>'font-size:8px;')); ?>
-                    <?php } else if ($user['Status']['id'] == 3) { ?>
-                    <?php echo $this->Html->link("Disable", array('action'=>'disable', $user['User']['id']), array('style'=>'font-size:8px;')); ?>
+                    <?php echo $this->Html->link("Edit", array('action'=>'edit', $user['User']['id']), array('style'=>'font-size:8px;')); ?>
+                    <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->ADMIN)) { ?>
+                        |
+                        <?php echo $this->Html->link( "Delete", array('action'=>'delete', $user['User']['id']), array('style'=>'font-size:8px;',
+                                                        'onclick'=>'return confirm("Are you sure you want to delete this user?")'));?> |
+                        <?php if ($user['Status']['id'] != 3) { ?>
+                            <?php echo $this->Html->link("Activate", array('action'=>'activate', $user['User']['id']), array('style'=>'font-size:8px;')); ?>
+                        <?php } else if ($user['Status']['id'] == 3) { ?>
+                        <?php echo $this->Html->link("Disable", array('action'=>'disable', $user['User']['id']), array('style'=>'font-size:8px;')); ?>
+                        <?php } ?>
                     <?php } ?>
                 </div>
                 <?php } ?>
@@ -146,7 +157,9 @@
     <?php echo $this->Paginator->numbers(array( 'class' => 'numbers' ));?>
     <?php echo $this->Paginator->next(__('next', true) . ' >>', array(), null, array('class' =>'disabled'));?>
     <br>
+    <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->ADMIN)) { ?>
     <?php echo $this->Html->link( "Add A New User", array('action'=>'add'),array('escape' => false) ); ?>
+    <?php } ?>
     <?php } else { ?>
     <br>
     No users found.

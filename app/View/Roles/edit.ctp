@@ -11,10 +11,6 @@
             <label style="display: block; float: left; width: 140px;">Name:</label>
             <?php echo $this->Form->input('name', array('label'=>'', 'style'=>'width:300px')); ?>
         </li>
-        <li class="input-group list-group-item">
-            <label style="display: block; float: left; width: 140px;">Access Role Type:</label>
-            <?php echo $this->Form->input('role_type_id', array('label'=>'')); ?>
-        </li>
     </ul>
     <?php echo $this->Form->end(__('Submit')); ?>
 </div>

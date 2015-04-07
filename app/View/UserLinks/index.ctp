@@ -11,7 +11,6 @@
         <th>Link</th>
         <th>Icon</th>
         <th>Order</th>
-        <th>Role Type</th>
         <th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php foreach ($userLinks as $userLink): ?>
@@ -20,7 +19,6 @@
 		<td><?php echo h($userLink['UserLink']['link']); ?></td>
         <td><?php echo h($userLink['UserLink']['icon']); ?></td>
         <td><?php echo h($userLink['UserLink']['order']); ?></td>
-        <td><div style="width:180px"><?php echo $userLink['RoleType']['name'] ?></div></td>
         <td class="actions" style="font-size:8px;">
             <div style="width:90px">
                 <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $userLink['UserLink']['id'])); ?>

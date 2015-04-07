@@ -3,7 +3,7 @@
     <li class="input-group list-group-item">
         <?php echo $this->Html->link('Manage Users', '/users/user_management') ?>
     </li>
-    <?php if ($this->User->isAdmin(AuthComponent::user('id'))) {  ?>
+    <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->ADMIN)) {  ?>
     <li class="input-group list-group-item">
         <?php echo $this->Html->link('Manual Management', '/manuals/index') ?>
     </li>

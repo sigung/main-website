@@ -23,10 +23,6 @@
             <label style="display: block; float: left; width: 140px;">Order:</label>
             <?php echo $this->Form->input('order', array('label'=>'', 'style'=>'width:300px')); ?>
         </li>
-        <li class="input-group list-group-item">
-            <label style="display: block; float: left; width: 140px;">For Students:</label>
-            <?php echo $this->Form->input('role_type_id', array('label'=>'')); ?>
-        </li>
     </ul>
     <?php echo $this->Form->end(__('Submit')); ?>
 </div>

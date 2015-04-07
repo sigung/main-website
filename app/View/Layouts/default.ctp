@@ -53,7 +53,7 @@
                 </aside>
             </div>
             <div class="col-md-9 sectionContent">
-                <?php if ($this->User->isAdmin(AuthComponent::user('id'))) {  ?>
+                <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->ADMIN)) {  ?>
                 <div style="position:absolute; right:20px;'">
                     <?php echo $this->Html->link('Edit Content', '#', array('onclick'=>'showEdit()', 'class'=>'noEdit')) ?>
                     <?php echo $this->Html->link('Save Content and Close', '#', array('onclick'=>'submitAndClose(); return false;', 'class'=>'editable-content', 'style'=>'display:none')) ?>

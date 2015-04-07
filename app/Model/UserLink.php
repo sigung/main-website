@@ -16,14 +16,4 @@ class UserLink extends AppModel {
             ),
         ),
 	);
-
-	public $belongsTo = array(
-        'RoleType' => array(
-            'className' => 'RoleType',
-            'foreignKey' => 'role_type_id',
-            'conditions' => '',
-            'fields' => '',
-            'order' => ''
-        )
-    );
 }

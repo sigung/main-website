@@ -8,13 +8,11 @@
 	<table cellpadding="0" cellspacing="0" id="pattern-style-b">
 	<tr>
 			<th>Name</th>
-			<th>Role Type</th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php foreach ($roles as $role): ?>
 	<tr>
 		<td><?php echo h($role['Role']['name']); ?>&nbsp;</td>
-		<td><?php echo h($role['RoleType']['name']); ?>&nbsp;</td>
         <td class="actions" style="font-size:8px;">
             <div style="width:90px">
                 <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $role['Role']['id'])); ?>
