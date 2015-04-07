@@ -7,7 +7,7 @@ App::uses('AppController', 'Controller');
  * @property PaginatorComponent $Paginator
  */
 class ManualsController extends AppController {
-    public $uses = array('Manual', 'User', 'Role', 'Studio', 'UserRoleStudio');
+    public $uses = array('Manual', 'User', 'Role', 'Studio', 'UserRoleStudio', 'KungFuRank', 'TaiChiRank');
     public $helpers = array('User','Js' => array('Jquery'));
     public function beforeFilter() {
         parent::beforeFilter();
@@ -81,6 +81,10 @@ class ManualsController extends AppController {
 
 
 	public function add() {
+        $kungFuData = $this->KungFuRank->find('list', array('fields' => array('id', 'name'),'order'=>'id ASC'));
+        $taiChiData = $this->TaiChiRank->find('list', array('fields' => array('id', 'name'),'order'=>'id ASC'));
+        $this->set('kungFuRanks', $kungFuData);
+        $this->set('taiChiRanks', $taiChiData);
 		if ($this->request->is('post') &&
 		    !empty($this->data) &&
             is_uploaded_file($this->data['Manual']['data']['tmp_name'])) {
@@ -131,6 +135,10 @@ class ManualsController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+        $kungFuData = $this->KungFuRank->find('list', array('fields' => array('id', 'name'),'order'=>'id ASC'));
+        $taiChiData = $this->TaiChiRank->find('list', array('fields' => array('id', 'name'),'order'=>'id ASC'));
+        $this->set('kungFuRanks', $kungFuData);
+        $this->set('taiChiRanks', $taiChiData);
 		if (!$this->Manual->exists($id)) {
 			throw new NotFoundException(__('Invalid manual'));
 		}

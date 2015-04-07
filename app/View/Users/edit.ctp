@@ -14,7 +14,7 @@
     <legend><?php echo $this->Html->link('Back To Manage Users', '/users/user_management') ?></legend>
     <?php echo $this->Form->submit('Save', array('class' => 'form-submit', 'title' => 'Click here to edit the user')); ?>
 
-    <div  style="float:left; width:400px;">
+    <div  style="float:left; width:430px;">
         <ul class="list-group">
             <li class="input-group list-group-item">
                 <label class="login_label">First Name*:</label>

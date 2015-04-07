@@ -27,7 +27,8 @@ class StudentsController extends AppController {
     }
 
     public function learn() {
-        $manuals = $this->getManualsWithAccess($this->Auth->user('id'));
+        $user = $this->User->find('first', array('conditions'=>array('User.id'=>$this->Auth->user('id'))));
+        $manuals = $this->getManualsWithAccess($user, false);
         $this->set('manuals', $manuals);
     }
 

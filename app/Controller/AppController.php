@@ -147,31 +147,24 @@ class AppController extends Controller {
         }
     }
 
-    protected function getManualsWithAccess($id) {
-        $model = new UserRoleStudio();
-        $userRoleStudios = $model->find("all", array('conditions'=>array('user_id'=>$id)));
-        if (count($userRoleStudios) >= 1) {
-            $roleTypes = array();
-            $isAdmin = false;
-            foreach ($userRoleStudios as $userRole) {
-                if ($userRole['Role']['id']==10) {
-                    $isAdmin=true;
-                    break;
-                }
-                $roleTypes[] = $userRole['Role']['role_type_id'];
+    protected function getManualsWithAccess($user, $isAdmin) {
+        $manuals = array();
+        if (!$isAdmin) {
+            $conditionsArray=array();//array('Manual.instructors_college=1 and Manual.instructors_college='.$user['User']['instructors_college']);
+            if (null != $user['User']['kung_fu_rank_id']) {
+                $conditionsArray[] = 'Manual.kung_fu_rank_id is not null and Manual.kung_fu_rank_id <= '.$user['User']['kung_fu_rank_id'];
             }
-            $manuals = array();
-            if (!$isAdmin) {
-                $manuals = $this->Manual->find('all', array('conditions'=>array('Manual.role_type_id'=>$roleTypes)));
+            if (null != $user['User']['tai_chi_rank_id']) {
+                $conditionsArray[] = 'Manual.tai_chi_rank_id is not null and Manual.tai_chi_rank_id <= '.$user['User']['tai_chi_rank_id'];
             }
-            else {
-                $manuals = $this->Manual->find('all');
-            }
-            return $manuals;
+
+            $manuals = $this->Manual->find('all', array('conditions'=>array('OR'=>$conditionsArray
+            )));
         }
         else {
-            return array();
+            $manuals = $this->Manual->find('all');
         }
+        return $manuals;
     }
 
     protected function hasManualAccess($id, $manualRoleType) {
