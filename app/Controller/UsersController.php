@@ -3,7 +3,7 @@ App::uses('AppController', 'Controller');
 App::import('Vendor', 'PhpMailer', array('file' => 'phpmailer' . DS . 'PHPMailerAutoload.php'));
 App::import('Helper', 'UserHelper');
 class UsersController extends AppController {
-    public $uses = array('User', 'UserInfo', 'Role', 'Studio', 'UserRoleStudio', 'Status', 'Ticket', 'Manual', 'SystemProperty', 'CommonEmailMessage', 'Photo', 'KungFuRank', 'TaiChiRank');
+    public $uses = array('User', 'UserInfo', 'Role', 'Studio', 'UserRoleStudio', 'Status', 'Ticket', 'Manual', 'SystemProperty', 'CommonEmailMessage', 'Photo', 'KungFuRank', 'TaiChiRank', 'Comment');
     var $components = array('Tickets'); //  use component email
 
     public $helpers = array('User','Js' => array('Jquery'));
@@ -234,10 +234,12 @@ class UsersController extends AppController {
         $studioData = $this->Studio->find('list', array('fields' => array('id', 'name'),'order'=>'id ASC'));
         $kungFuData = $this->KungFuRank->find('list', array('fields' => array('id', 'name'),'order'=>'id ASC'));
         $taiChiData = $this->TaiChiRank->find('list', array('fields' => array('id', 'name'),'order'=>'id ASC'));
+        $comments = $this->Comment->find('all', array('conditions'=>array('user_id'=>$id), 'order'=>'Comment.date_created desc', 'recursive'=>1));
         $this->set('roles', $roleData);
         $this->set('studios', $studioData);
         $this->set('kungFuRanks', $kungFuData);
         $this->set('taiChiRanks', $taiChiData);
+        $this->set("comments", $comments);
 
         $user = $this->userIdProblems($id);
 
@@ -257,38 +259,16 @@ class UsersController extends AppController {
             if ($user['User']['email'] == $this->request->data['User']['email']) {
                 unset($this->request->data['User']['email']);
             }
-            $this->log($this->request->data);
             if ($this->User->saveAll($this->request->data)) {
                 $this->setFlashAndRedirect(Configure::read('User.editSuccess'), null, false);
                 $this->redirect(array('action' => 'edit', $id));
             }else{
-                $this->log($this->User->invalidFields());
                 $this->setFlashAndRedirect(Configure::read('User.editFailed'));
                 $this->redirect(array('action' => 'edit', $id));
             }
         }
         if (!$this->request->data) {
             $this->request->data = $user;
-        }
-    }
-
-    public function ajax_add_role() {
-        if ($this->request->is('ajax')) {
-            if (!$this->UserRoleStudio->saveAll($this->request->data)) {
-                if (isset($this->UserRoleStudio->validationErrors['unique'])) {
-                    $this->setFlashAndRedirect(Configure::read('User.ajaxAddRoleFailedExisting'));
-                }
-                else {
-                    $this->setFlashAndRedirect(Configure::read('User.ajaxAddRoleFailedWithVE'));
-                }
-            }
-            $roleData = $this->Role->find('list', array('fields' => array('id', 'name'),'order'=>'id ASC'));
-            $studioData = $this->Studio->find('list', array('fields' => array('id', 'name'),'order'=>'id ASC'));
-            $this->set('roles', $roleData);
-            $this->set('studios', $studioData);
-            $userRoleInfo = $this->UserRoleStudio->find('all', array('conditions'=>array('user_id'=>$this->request->data['User']['id']), 'recursive'=>1));
-            $this->set("userRoleInfo", $userRoleInfo);
-            $this->render('user-role-ajax-response', 'ajax');
         }
     }
 
@@ -519,6 +499,26 @@ class UsersController extends AppController {
     /****************************
     *   AJAX FUNCTIONS
     *****************************/
+    public function ajax_add_role() {
+        if ($this->request->is('ajax')) {
+            if (!$this->UserRoleStudio->saveAll($this->request->data)) {
+                if (isset($this->UserRoleStudio->validationErrors['unique'])) {
+                    $this->setFlashAndRedirect(Configure::read('User.ajaxAddRoleFailedExisting'));
+                }
+                else {
+                    $this->setFlashAndRedirect(Configure::read('User.ajaxAddRoleFailedWithVE'));
+                }
+            }
+            $roleData = $this->Role->find('list', array('fields' => array('id', 'name'),'order'=>'id ASC'));
+            $studioData = $this->Studio->find('list', array('fields' => array('id', 'name'),'order'=>'id ASC'));
+            $this->set('roles', $roleData);
+            $this->set('studios', $studioData);
+            $userRoleInfo = $this->UserRoleStudio->find('all', array('conditions'=>array('user_id'=>$this->request->data['User']['id']), 'recursive'=>1));
+            $this->set("userRoleInfo", $userRoleInfo);
+            $this->render('user-role-ajax-response', 'ajax');
+        }
+    }
+
     public function ajax_delete_role($id=null) {
         // set default class & message for setFlash
         $class = 'flash_bad';
@@ -535,7 +535,56 @@ class UsersController extends AppController {
                     $class = 'flashmsg';
                     $msg   = 'Role deleted';
                 } else {
-                    $msg = 'There was a problem deleting your Item, please try again';
+                    $msg = 'There was a problem deleting the role, please try again';
+                }
+            }
+        }
+
+        // output JSON on AJAX request
+        if($this->request->is('ajax')) {
+            $this->autoRender = $this->layout = false;
+            echo json_encode(array('success'=>($class=='flasherrormsg') ? FALSE : TRUE));
+            exit;
+        }
+
+        // set flash message & redirect
+        $this->Session->setFlash($msg,'default',array('class'=>$class));
+        $this->redirect(array('action'=>'index'));
+    }
+
+
+
+
+    public function ajax_add_comment() {
+        if ($this->request->is('ajax')) {
+            $logged_in_user = $this->User->find('first', array('conditions'=>array('User.id'=>$this->Auth->user('id'))));
+            $this->request->data['Comment']['commenter'] = $logged_in_user['User']['email'];
+            if (!$this->Comment->saveAll($this->request->data)) {
+                $this->setFlashAndRedirect(Configure::read('User.ajaxAddCommentFailedWithVE'));
+            }
+            $comments = $this->Comment->find('all', array('conditions'=>array('user_id'=>$this->request->data['Comment']['user_id']), 'order'=>'Comment.date_created desc', 'recursive'=>1));
+            $this->set("comments", $comments);
+            $this->render('user-comment-ajax-response', 'ajax');
+        }
+    }
+
+    public function ajax_delete_comment($id=null) {
+        // set default class & message for setFlash
+        $class = 'flash_bad';
+        $msg   = 'Invalid List Id';
+
+        // check id is valid
+        if($id!=null && is_numeric($id)) {
+            // get the Item
+            $usr = $this->Comment->findById($id);
+            // check Item is valid
+            if(!empty($usr)) {
+                // try deleting the item
+                if($this->Comment->delete($id)) {
+                    $class = 'flashmsg';
+                    $msg   = 'Comment deleted';
+                } else {
+                    $msg = 'There was a problem deleting your comment, please try again';
                 }
             }
         }

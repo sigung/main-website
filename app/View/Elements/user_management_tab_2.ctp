@@ -43,52 +43,52 @@
             <h4>This user has the following roles:</h4>
             <ul class="list-group" id="userRoleManagement">
                 <script type="text/javascript">
-                        // on dom ready
-                        $(document).ready(function(){
-                        // class exists
-                        if($('.confirm_delete').length) {
-                                // add click handler
-                            $('.confirm_delete').click(function(){
-                                // ask for confirmation
-                                var result = confirm('Please confirm you wish to DELETE this role for this user.');
+                    // on dom ready
+                    $(document).ready(function(){
+                    // class exists
+                    if($('.confirm_delete').length) {
+                            // add click handler
+                        $('.confirm_delete').click(function(){
+                            // ask for confirmation
+                            var result = confirm('Please confirm you wish to DELETE this role for this user.');
 
-                                // show loading image
-                                $('.ajax_loader').show();
-                                $('#flashMessage').fadeOut();
+                            // show loading image
+                            $('.ajax_loader').show();
+                            $('#flashMessage').fadeOut();
 
-                                // get parent row
-                                var row = $(this).parents('li');
+                            // get parent row
+                            var row = $(this).parents('li');
 
-                                // do ajax request
-                                if(result) {
-                                    $.ajax({
-                                        type:"POST",
-                                        url:$(this).attr('href'),
-                                        data:"ajax=1",
-                                        dataType: "json",
-                                        success:function(response){
-                                            // hide loading image
-                                            $('.ajax_loader').hide();
+                            // do ajax request
+                            if(result) {
+                                $.ajax({
+                                    type:"POST",
+                                    url:$(this).attr('href'),
+                                    data:"ajax=1",
+                                    dataType: "json",
+                                    success:function(response){
+                                        // hide loading image
+                                        $('.ajax_loader').hide();
 
-                                            // hide table row on success
-                                            if(response.success == true) {
-                                                row.fadeOut();
-                                            }
-
-                                            // show respsonse message
-                                            if( response.msg ) {
-                                                $('#ajax_msg').html( response.msg ).show();
-                                            } else {
-                                                $('#ajax_msg').html( "<p id='flashMessage' class='flash_bad'>An unexpected error has occured, please refresh and try again</p>" ).show();
-                                            }
+                                        // hide table row on success
+                                        if(response.success == true) {
+                                            row.fadeOut();
                                         }
-                                    });
-                                }
-                            return false;
-                            });
-                        }
+
+                                        // show respsonse message
+                                        if( response.msg ) {
+                                            $('#ajax_msg').html( response.msg ).show();
+                                        } else {
+                                            $('#ajax_msg').html( "<p id='flashMessage' class='flash_bad'>An unexpected error has occured, please refresh and try again</p>" ).show();
+                                        }
+                                    }
+                                });
+                            }
+                        return false;
                         });
-                    </script>
+                    }
+                    });
+                </script>
 
                 <?php foreach ($userRoleInfo as $j) { ?>
                 <li class="list-group-item" style="width:500px;">
@@ -112,8 +112,7 @@
                 </li>
                 <?php
                     // JsHelper should be loaded in $helpers in controller
-                    // Form ID: #ContactsContactForm
-                    // Div to use for AJAX response: #contactStatus
+                    // Form ID: #UserRoleStudioEditForm
                     $data = $this->Js->get('#UserRoleStudioEditForm')->serializeForm(array('isForm' => true, 'inline' => true));
                 $this->Js->get('#UserRoleStudioEditForm')->event('submit',
                 $this->Js->request(array('action' => 'ajax_add_role', 'controller' => 'users'),
