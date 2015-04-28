@@ -29,8 +29,8 @@
                 <?php echo $this->Form->input('TaiChiRank.id', array('options' => $taiChiRanks, 'label'=>'')); ?>
                 <?php echo $this->Form->input('tai_chi_rank_date', array('dateFormat'=>'DMY', 'minYear'=>date('Y')-110, 'maxYear'=>date('Y'), 'empty'=>array('- -'), 'maxLength' => 32, 'title' => 'Tai Chi Rank Date', 'label'=>'')); ?>
                 <?php } else  { ?>
-                <?php echo $this->Form->input('TaiChiRank.id', array('options' => $kungFuRanks, 'label'=>'', 'disabled'=>'disabled')); ?>
-                <?php echo $this->Form->input('tai_chi_rank_date', array('dateFormat'=>'DMY', 'minYear'=>date('Y')-110, 'maxYear'=>date('Y'), 'empty'=>array('- -'), 'maxLength' => 32, 'title' => 'Kung Fu Rank Date', 'label'=>'', 'disabled'=>'disabled')); ?>
+                <?php echo $this->Form->input('TaiChiRank.id', array('options' => $taiChiRanks, 'label'=>'', 'disabled'=>'disabled')); ?>
+                <?php echo $this->Form->input('tai_chi_rank_date', array('dateFormat'=>'DMY', 'minYear'=>date('Y')-110, 'maxYear'=>date('Y'), 'empty'=>array('- -'), 'maxLength' => 32, 'title' => 'Tai Chi Rank Date', 'label'=>'', 'disabled'=>'disabled')); ?>
                 <?php } ?>
             </li>
         </ul>

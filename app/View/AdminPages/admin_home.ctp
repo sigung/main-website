@@ -19,5 +19,8 @@
     <li class="input-group list-group-item">
         <?php echo $this->Html->link('User Links', '/userLinks') ?>
     </li>
+    <li class="input-group list-group-item">
+        <?php echo $this->Html->link('Skills', '/skills') ?>
+    </li>
     <?php }?>
 </ul>
