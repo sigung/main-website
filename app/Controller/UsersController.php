@@ -20,7 +20,7 @@ class UsersController extends AppController {
     }
 
     public function isAuthorized($user) {
-        if (in_array($this->action, array('user_home', 'account', 'extra'))) {
+        if (in_array($this->action, array('user_home', 'user_password_reset', 'account', 'extra'))) {
             return true;
         }
         if ($this->isAuthorizedByRole($user, array('learn', 'play', 'train', 'record'), $this->STUDENT)) return true;
@@ -389,6 +389,33 @@ class UsersController extends AppController {
         else {
             $this->Tickets->del($hash);
             $this->setFlashAndRedirect(Configure::read('User.passwordResetInvalidHash'), 'login');
+        }
+    }
+
+    public function user_password_reset()
+    {
+        $id = $this->Auth->user('id');
+        $user = $this->userIdProblems($id);
+        $this->set('id', $user['User']['id']);
+        if ($this->request->is('post')) {
+            if (is_array($user))
+            {
+                if ($this->Auth->password($this->data['User']['old_password'])!=$user['User']['password']) {
+                    $this->setFlashAndRedirect(Configure::read('User.passwordResetInvalidCurrentError'), 'user_password_reset');
+                }
+                if (isset($this->params['data']['User']))
+                {
+                    if ($this->User->save($this->params['data']))
+                    {
+                        $this->setFlashAndRedirect(Configure::read('User.passwordResetSuccess'), 'user_home', false);
+                    } else{
+                        $this->setFlashAndRedirect(Configure::read('User.passwordResetError'), 'user_password_reset');
+                    }
+                }
+            }
+            else {
+                $this->setFlashAndRedirect(Configure::read('User.passwordResetErrorLoadingUser'), 'user_password_reset');
+            }
         }
     }
 

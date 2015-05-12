@@ -136,6 +136,8 @@ Configure::write('User.confirmRegistrationFailed', 'There was a problem confirmi
 Configure::write('User.passwordResetNoUserWithThatEmailAddress','There are no users in our system with that email address.');
 Configure::write('User.passwordResetEmailSent','An email has been sent to your account with a link to reset your password.');
 Configure::write('User.passwordResetEmailFailed','Unable to send the reset password email.  Please try again later.');
+Configure::write('User.passwordResetError','We were unable to reset your password.  Please try again later.');
+Configure::write('User.passwordResetInvalidCurrentError','Your old password is incorrect.');
 Configure::write('User.passwordResetErrorLoadingUser','We were unable to load the user.  Please try again later.');
 Configure::write('User.passwordResetInvalidHash','There was a problem trying to reset the password.  Your token to reset your password may have expired.');
 Configure::write('User.passwordResetSuccess','Your new password was saved.  Please login using your new password.');

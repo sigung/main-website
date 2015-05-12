@@ -27,39 +27,47 @@
 </style>
 
 <h3 style="margin:0 50px 0 50px;">"Don't only practise your art, but force your way into its secrets; art deserves that, for it and knowledge can raise man to the Divine."<span style="font-size:10px;">~Ludwig van Beethoven</span></h3>
+<br>
+<div style="margin:0 50px 0 50px;">Welcome!  You are visiting the Shaolin Arts user tools - one one of the best sites available for martial artists.  This site is constantly being updated with new features.  Please visit often to see what training and learning you can participate in online and what events are happening at your closest studio!</div>
 
 <ul class='home_links'>
-    <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->STUDENT)) {  ?>
-    <li>
-        <div style="height:190px;">
-            <?php echo $this->Html->link($this->Html->image('userImages/train.png', array('alt' => 'Train', 'border' => '0', 'height'=>'170', 'style'=>'border:none;')), '/students/train', array('escape' => false)) ?>
-        </div>
-        <p style="text-align:center; font-weight:bold; bottom:5px;">Train</p>
-    </li>
-    <li>
-        <div style="height:190px;">
-            <?php echo $this->Html->link($this->Html->image('userImages/record.png', array('alt' => 'Record', 'border' => '0', 'width' => '225', 'style'=>'border:none;')), '/students/record', array('escape' => false)) ?>
-        </div>
-        <p style="text-align:center; font-weight:bold; bottom:5px;">Record</p>
-    </li>
-    <li>
-        <div style="height:190px;">
-            <?php echo $this->Html->link($this->Html->image('userImages/learn.png', array('alt' => 'Learn', 'border' => '0', 'width' => '225', 'style'=>'border:none;')), '/students/learn', array('escape' => false)) ?>
-        </div>
-        <p style="text-align:center; font-weight:bold; bottom:5px;">Learn</p>
-    </li>
-    <li>
-        <div style="height:190px;">
-            <?php echo $this->Html->link($this->Html->image('userImages/play.png', array('alt' => 'Play', 'border' => '0', 'width' => '225', 'style'=>'border:none;')), '/students/play', array('escape' => false)) ?>
-        </div>
-        <p style="text-align:center; font-weight:bold; bottom:5px;">Play</p>
-    </li>
-    <?php } ?>
+    <!--<?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->STUDENT)) {  ?>-->
+    <!--<li>-->
+        <!--<div style="height:190px;">-->
+            <!--<?php echo $this->Html->link($this->Html->image('userImages/train.png', array('alt' => 'Train', 'border' => '0', 'height'=>'170', 'style'=>'border:none;')), '/students/train', array('escape' => false)) ?>-->
+        <!--</div>-->
+        <!--<p style="text-align:center; font-weight:bold; bottom:5px;">Train</p>-->
+    <!--</li>-->
+    <!--<li>-->
+        <!--<div style="height:190px;">-->
+            <!--<?php echo $this->Html->link($this->Html->image('userImages/record.png', array('alt' => 'Record', 'border' => '0', 'width' => '225', 'style'=>'border:none;')), '/students/record', array('escape' => false)) ?>-->
+        <!--</div>-->
+        <!--<p style="text-align:center; font-weight:bold; bottom:5px;">Record</p>-->
+    <!--</li>-->
+    <!--<li>-->
+        <!--<div style="height:190px;">-->
+            <!--<?php echo $this->Html->link($this->Html->image('userImages/learn.png', array('alt' => 'Learn', 'border' => '0', 'width' => '225', 'style'=>'border:none;')), '/students/learn', array('escape' => false)) ?>-->
+        <!--</div>-->
+        <!--<p style="text-align:center; font-weight:bold; bottom:5px;">Learn</p>-->
+    <!--</li>-->
+    <!--<li>-->
+        <!--<div style="height:190px;">-->
+            <!--<?php echo $this->Html->link($this->Html->image('userImages/play.png', array('alt' => 'Play', 'border' => '0', 'width' => '225', 'style'=>'border:none;')), '/students/play', array('escape' => false)) ?>-->
+        <!--</div>-->
+        <!--<p style="text-align:center; font-weight:bold; bottom:5px;">Play</p>-->
+    <!--</li>-->
+    <!--<?php } ?>-->
     <li>
         <div style="height:190px;">
             <?php echo $this->Html->link($this->Html->image('userImages/extra.png', array('alt' => 'Extra Goodies', 'border' => '0', 'height' => '170', 'style'=>'border:none; margin-top:auto; margin-left:20px;')), '/users/extra', array('escape' => false)) ?>
         </div>
         <p style="text-align:center; font-weight:bold;">Extra Goodies</p>
+    </li>
+    <li>
+        <div style="height:190px;">
+            <?php echo $this->Html->link($this->Html->image('userImages/keys.png', array('alt' => 'Reset Password', 'border' => '0', 'height' => '150', 'style'=>'border:none; margin-top:auto; margin-left:20px;')), '/users/user_password_reset', array('escape' => false)) ?>
+        </div>
+        <p style="text-align:center; font-weight:bold;">Reset Password</p>
     </li>
     <li>
         <div style="height:190px;">
