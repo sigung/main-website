@@ -15,6 +15,11 @@
                 <?php echo $this->Form->input('UserInfo.lname', array('label'=>'', 'maxLength' => 32, 'title' => 'Last Name')); ?>
             </li>
             <li class="input-group list-group-item">
+                <label class="login_label">Due Date:</label>
+                <?php echo $this->Form->input('due_date', array('dateFormat'=>'DMY', 'minYear'=>date('Y')-110, 'maxYear'=>date('Y')-3+1, 'empty'=>array('- -'), 'maxLength' => 32, 'title' => 'Due Date', 'label'=>'')); ?>
+                <?php echo $this->Form->textarea('due_date_comments', array('label'=>'', 'rows'=>3, 'cols'=>45, 'maxLength' => 256, 'title' => 'Due Date Comments')); ?>
+            </li>
+            <li class="input-group list-group-item">
                 <label class="login_label">Email*:</label>
                 <?php echo $this->Form->input('email', array('label'=>'', 'maxLength' => 100, 'title' => 'Email')); ?>
             </li>

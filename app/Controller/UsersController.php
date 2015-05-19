@@ -262,6 +262,15 @@ class UsersController extends AppController {
             if ($user['User']['email'] == $this->request->data['User']['email']) {
                 unset($this->request->data['User']['email']);
             }
+            if (strlen($this->request->data['TaiChiRank']['id'])==0) {
+                unset($this->request->data['TaiChiRank']['id']);
+                $this->request->data['User']['tai_chi_rank_id'] = null;
+            }
+            if (strlen($this->request->data['KungFuRank']['id'])==0) {
+                unset($this->request->data['KungFuRank']['id']);
+                $this->request->data['User']['kung_fu_rank_id'] = null;
+            }
+
             if ($this->User->saveAll($this->request->data)) {
                 $this->setFlashAndRedirect(Configure::read('User.editSuccess'), null, false);
                 $this->redirect(array('action' => 'edit', $id));

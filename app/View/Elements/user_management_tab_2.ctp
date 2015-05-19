@@ -9,14 +9,9 @@
     <div style="float:left; width:430px;">
         <ul class="list-group">
             <li class="input-group list-group-item">
-                <label class="login_label">Due Date:</label>
-                <?php echo $this->Form->input('due_date', array('dateFormat'=>'DMY', 'minYear'=>date('Y')-110, 'maxYear'=>date('Y')-3+1, 'empty'=>array('- -'), 'maxLength' => 32, 'title' => 'Due Date', 'label'=>'')); ?>
-                <?php echo $this->Form->textarea('due_date_comments', array('label'=>'', 'rows'=>3, 'cols'=>45, 'maxLength' => 256, 'title' => 'Due Date Comments')); ?>
-            </li>
-            <li class="input-group list-group-item">
                 <label class="login_label">Kung Fu Rank:</label>
                 <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->ADMIN)) { ?>
-                <?php echo $this->Form->input('KungFuRank.id', array('options' => $kungFuRanks, 'label'=>'')); ?>
+                <?php echo $this->Form->input('KungFuRank.id', array('empty'=>'No Rank', 'options' => $kungFuRanks, 'label'=>'')); ?>
                 <?php echo $this->Form->input('kung_fu_rank_date', array('dateFormat'=>'DMY', 'minYear'=>date('Y')-110, 'maxYear'=>date('Y'), 'empty'=>array('- -'), 'maxLength' => 32, 'title' => 'Kung Fu Rank Date', 'label'=>'')); ?>
                 <?php } else  { ?>
                 <?php echo $this->Form->input('KungFuRank.id', array('options' => $kungFuRanks, 'label'=>'', 'disabled'=>'disabled')); ?>
@@ -26,7 +21,7 @@
             <li class="input-group list-group-item">
                 <label class="login_label">TaiChi Rank:</label>
                 <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->ADMIN)) { ?>
-                <?php echo $this->Form->input('TaiChiRank.id', array('options' => $taiChiRanks, 'label'=>'')); ?>
+                <?php echo $this->Form->input('TaiChiRank.id', array('empty'=>'No Rank', 'options' => $taiChiRanks, 'label'=>'')); ?>
                 <?php echo $this->Form->input('tai_chi_rank_date', array('dateFormat'=>'DMY', 'minYear'=>date('Y')-110, 'maxYear'=>date('Y'), 'empty'=>array('- -'), 'maxLength' => 32, 'title' => 'Tai Chi Rank Date', 'label'=>'')); ?>
                 <?php } else  { ?>
                 <?php echo $this->Form->input('TaiChiRank.id', array('options' => $taiChiRanks, 'label'=>'', 'disabled'=>'disabled')); ?>
