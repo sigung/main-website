@@ -212,7 +212,10 @@ class AppController extends Controller {
         }
 
         //Typical mail data
-        $mail->AddAddress($to);
+        foreach($to as $email)
+        {
+           $mail->AddAddress($email);
+        }
         $mail->SetFrom($emailPassThroughAddress, $emailPassThroughFrom);
         $mail->Subject = $subject;
         $mail->Body = $body;

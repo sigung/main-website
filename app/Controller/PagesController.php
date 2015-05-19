@@ -7,7 +7,7 @@ class PagesController extends AppController {
  *
  * @var array
  */
-	public $uses = array('Contact', 'ContentForPage');
+	public $uses = array('Contact', 'ContentForPage', 'Studio');
 
     function beforeFilter() {
         parent::beforeFilter();
@@ -32,6 +32,10 @@ class PagesController extends AppController {
 		if (!empty($path[$count - 1])) {
 			$title_for_layout = Inflector::humanize($path[$count - 1]);
 		}
+		if ($page == 'contact_us') {
+		    $studioData = $this->Studio->find('list', array('fields' => array('email', 'name'), 'order'=>'id ASC'));
+            $this->set('studios', $studioData);
+        }
         $pageContent = $this->ContentForPage->find('first', array('conditions'=>array('name'=>$path[0])));
         $this->set('pageContent', $pageContent['ContentForPage']['content']);
         $this->set('pageContentAside', $pageContent['ContentForPage']['contentAside']);

@@ -38,15 +38,25 @@ class StudentsController extends AppController {
     public function extra() {}
 
     public function sendContactMessage() {
-        $contact_us_email = $this->SystemProperty->findByName("contact_us_email");
-        $contactUsEmail  = $contact_us_email['SystemProperty']['value'];
-        if ($this->request->is('post')) {
-            $this->sendEmail($contactUsEmail, "Contact Form: ".$this->request->data['Contact']['subject'], $this->request->data['Contact']['body']);
+        $contact_us_emails = array();
+        $contact_us_emails[] = $this->SystemProperty->findByName("contact_us_email")['SystemProperty']['value'];
+        $contact_us_emails[] = $this->request->data['Contact']['studio'];
+        $contact_info = $this->request->data['Contact']['contact_info'];
+        $body = $this->request->data['Contact']['body'];
+
+        if (strlen($this->request->data['Contact']['studio']) == 0) {
+            $this->Session->setFlash(__("Please select the studio nearest to you and enter your email or phone so we can reach you."), 'default', array('class'=>'flasherrormsg'));
+        }
+        else if (strlen($contact_info) == 0) {
+            $this->Session->setFlash(__("Please select the studio nearest to you and enter your email or phone so we can reach you."), 'default', array('class'=>'flasherrormsg'));
+        }
+        else if ($this->request->is('post')) {
+            $this->sendEmail($contact_us_emails, "ShaolinArts Website Contact Form Submission", $this->request->data['Contact']['body']."\n\nContact Info:".$contact_info);
+            $this->Session->setFlash(__("Thankyou."), 'default', array('class'=>'flashmsg'));
         }
         else {
             $this->log("There was a problem with the contact form email process.  Not a Post.");
         }
-        $this->Session->setFlash(__("Thankyou."), 'default', array('class'=>'flashmsg'));
         $this->redirect(array('controller'=>'pages', 'action' => 'contact_us'));
     }
 }
