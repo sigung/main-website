@@ -39,7 +39,8 @@ class StudentsController extends AppController {
 
     public function sendContactMessage() {
         $contact_us_emails = array();
-        $contact_us_emails[] = $this->SystemProperty->findByName("contact_us_email")['SystemProperty']['value'];
+        $cue = $this->SystemProperty->findByName("contact_us_email");
+        $contact_us_emails[] = $cue['SystemProperty']['value'];
         $contact_us_emails[] = $this->request->data['Contact']['studio'];
         $contact_info = $this->request->data['Contact']['contact_info'];
         $body = $this->request->data['Contact']['body'];
