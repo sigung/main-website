@@ -9,7 +9,7 @@ class AdminPagesController extends AppController {
     }
 
     public function isAuthorized($user) {
-        if ($this->isAuthorizedByRole($user, array('admin_home'), $this->MANAGER)) return true;
+        if ($this->isAuthorizedByRole($user, array('admin_home'), $this->INSMANAGER)) return true;
         return parent::isAdmin($user);
     }
 

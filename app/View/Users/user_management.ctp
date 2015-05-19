@@ -133,7 +133,7 @@
                 <div style="width:50px;"><?php echo $user['Status']['name']; ?></div>
             </td>
             <td style="font-size:8px;">
-                <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->MANAGER)) { ?>
+                <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->INSMANAGER)) { ?>
                 <div style="width:90px">
                     <?php echo $this->Html->link("Edit", array('action'=>'edit', $user['User']['id']), array('style'=>'font-size:8px;')); ?>
                     <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->ADMIN)) { ?>

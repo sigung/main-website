@@ -1,4 +1,4 @@
-<?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->ADMIN)) { ?>
+<?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->INSMANAGER)) { ?>
 <div id="tabs-3">
     <div id="comments">
         <h4>Comments:</h4>

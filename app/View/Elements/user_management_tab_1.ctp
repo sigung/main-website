@@ -1,6 +1,7 @@
 <div id="tabs-1">
     <?php echo $this->Form->create('User');?>
     <?php echo $this->Form->input('id', array('type'=>'hidden', 'value' => $this->data['User']['id'])); ?>
+    <?php echo $this->Form->input('tab', array('type'=>'hidden', 'value' => 'tabs-1')); ?>
     <?php echo $this->Form->input('UserInfo.id', array('type'=>'hidden', 'value' => $this->data['UserInfo']['id'])); ?>
     <?php echo $this->Form->input('UserInfo.user_id', array('type'=>'hidden', 'value' => $this->data['User']['id'])); ?>
     <?php echo $this->Form->submit('Save', array('class' => 'form-submit', 'title' => 'Click here to edit the user')); ?>
@@ -16,8 +17,13 @@
             </li>
             <li class="input-group list-group-item">
                 <label class="login_label">Due Date:</label>
+                <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->MANAGER)) { ?>
                 <?php echo $this->Form->input('due_date', array('dateFormat'=>'DMY', 'minYear'=>date('Y')-110, 'maxYear'=>date('Y')-3+1, 'empty'=>array('- -'), 'maxLength' => 32, 'title' => 'Due Date', 'label'=>'')); ?>
                 <?php echo $this->Form->textarea('due_date_comments', array('label'=>'', 'rows'=>3, 'cols'=>45, 'maxLength' => 256, 'title' => 'Due Date Comments')); ?>
+                <?php } else { ?>
+                <?php echo $this->Form->input('due_date', array('dateFormat'=>'DMY', 'minYear'=>date('Y')-110, 'maxYear'=>date('Y')-3+1, 'empty'=>array('- -'), 'maxLength' => 32, 'title' => 'Due Date', 'label'=>'', 'disabled'=>'disabled')); ?>
+                <?php echo $this->Form->textarea('due_date_comments', array('label'=>'', 'rows'=>3, 'cols'=>45, 'maxLength' => 256, 'title' => 'Due Date Comments', 'disabled'=>'disabled')); ?>
+                <?php } ?>
             </li>
             <li class="input-group list-group-item">
                 <label class="login_label">Email*:</label>
@@ -83,11 +89,11 @@
                             ?>
                 <?php } ?>
             </iframe>
-            <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->ADMIN)) { ?>
+            <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->INSMANAGER)) { ?>
             <?php echo $this->Form->postLink(__('Delete Photo'), array('controller'=>'photos', 'action' => 'delete', $photoId), array(), __('Are you sure you want to delete this photo?', $photoId)); ?>
             <?php } ?>
             <?php } else { ?>
-            <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->ADMIN)) { ?>
+            <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->INSMANAGER)) { ?>
             <?php echo $this->Form->create('Photo', array('type' => 'file', 'url'=>'/photos/add')); ?>
             <?php echo $this->Form->hidden('User.id', array('value'=>$this->data['User']['id'])); ?>
             <ul class="list-group">

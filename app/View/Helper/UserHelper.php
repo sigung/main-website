@@ -8,6 +8,7 @@ class UserHelper extends AppHelper {
     public $OFFICE_MANAGER = array(4);
     public $DISTRICT_MANAGER = array(5);
     public $ADMIN = array(10);
+    public $INSMANAGER = array(2,4,5,10);
     public $MANAGER = array(4,5,10);
 
     public function isOfThisType($id, $types) {

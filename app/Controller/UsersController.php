@@ -24,7 +24,7 @@ class UsersController extends AppController {
             return true;
         }
         if ($this->isAuthorizedByRole($user, array('learn', 'play', 'train', 'record'), $this->STUDENT)) return true;
-        if ($this->isAuthorizedByRole($user, array('user_management', 'edit'), $this->MANAGER)) return true;
+        if ($this->isAuthorizedByRole($user, array('user_management', 'edit', 'ajax_delete_comment','ajax_add_comment'), $this->INSMANAGER)) return true;
         return parent::isAdmin($user);
     }
 
@@ -139,7 +139,7 @@ class UsersController extends AppController {
     private function makeStudioConditions($user) {
         $userRolesCount = $this->UserRoleStudio->find('count', array('conditions'=>array('user_id'=>$user['User']['id'], 'role_id'=>$this->ADMIN)));
         if ($userRolesCount>0) return array('id'=>$this->ALLSTUDIOS);
-        $userRoleStudios= $this->UserRoleStudio->find('all', array('conditions'=>array('user_id'=>$user['User']['id'], 'role_id'=>$this->MANAGER)));
+        $userRoleStudios= $this->UserRoleStudio->find('all', array('conditions'=>array('user_id'=>$user['User']['id'], 'role_id'=>$this->INSMANAGER)));
         $studioArray = array();
         foreach($userRoleStudios as $usr) {
             $studioArray[] = $usr['UserRoleStudio']['studio_id'];
@@ -262,18 +262,17 @@ class UsersController extends AppController {
             if ($user['User']['email'] == $this->request->data['User']['email']) {
                 unset($this->request->data['User']['email']);
             }
-            if (strlen($this->request->data['TaiChiRank']['id'])==0) {
+            if (isset($this->request->data['TaiChiRank']['id']) && strlen($this->request->data['TaiChiRank']['id'])==0) {
                 unset($this->request->data['TaiChiRank']['id']);
                 $this->request->data['User']['tai_chi_rank_id'] = null;
             }
-            if (strlen($this->request->data['KungFuRank']['id'])==0) {
+            if (isset($this->request->data['KungFuRank']['id']) && strlen($this->request->data['KungFuRank']['id'])==0) {
                 unset($this->request->data['KungFuRank']['id']);
                 $this->request->data['User']['kung_fu_rank_id'] = null;
             }
-
             if ($this->User->saveAll($this->request->data)) {
                 $this->setFlashAndRedirect(Configure::read('User.editSuccess'), null, false);
-                $this->redirect(array('action' => 'edit', $id));
+                $this->redirect(array('action' => 'edit', $id, '#'=>$this->request->data['User']['tab']));
             }else{
                 $this->setFlashAndRedirect(Configure::read('User.editFailed'));
                 $this->redirect(array('action' => 'edit', $id));

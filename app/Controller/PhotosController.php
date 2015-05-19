@@ -14,8 +14,7 @@ class PhotosController extends AppController {
     }
 
     public function isAuthorized($user) {
-        //if ($this->isAuthorizedByRole($user, array('photo'), $this->ADMIN)) return true;
-        //if ($this->isAuthorizedByRole($user, array('edit', 'delete', 'add'), $this->ADMIN)) return true;
+        if ($this->isAuthorizedByRole($user, array('photo', 'delete', 'add'), $this->INSMANAGER)) return true;
         return parent::isAdmin($user);
     }
 

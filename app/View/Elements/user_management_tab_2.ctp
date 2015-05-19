@@ -1,11 +1,14 @@
-<?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->ADMIN)) { ?>
+<?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->INSMANAGER)) { ?>
 <div id="tabs-2">
     <?php echo $this->Form->create('User');?>
     <?php echo $this->Form->input('id', array('type'=>'hidden', 'value' => $this->data['User']['id'])); ?>
+    <?php echo $this->Form->input('tab', array('type'=>'hidden', 'value' => 'tabs-2')); ?>
     <?php echo $this->Form->input('UserInfo.id', array('type'=>'hidden', 'value' => $this->data['UserInfo']['id'])); ?>
     <?php echo $this->Form->input('UserInfo.user_id', array('type'=>'hidden', 'value' => $this->data['User']['id'])); ?>
     <?php echo $this->Form->input('User.email', array('type'=>'hidden', 'value' => $this->data['User']['email'])); ?>
+    <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->ADMIN)) { ?>
     <?php echo $this->Form->submit('Save', array('class' => 'form-submit', 'title' => 'Click here to edit the user')); ?>
+    <?php } ?>
     <div style="float:left; width:430px;">
         <ul class="list-group">
             <li class="input-group list-group-item">
@@ -29,7 +32,9 @@
                 <?php } ?>
             </li>
         </ul>
+        <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->ADMIN)) { ?>
         <?php echo $this->Form->submit('Save', array('class' => 'form-submit', 'title' => 'Click here to edit the user')); ?>
+        <?php } ?>
     </div>
     <?php echo $this->Form->end(); ?>
 
@@ -89,12 +94,15 @@
                 <li class="list-group-item" style="width:500px;">
                     <?php echo($j['Role']['name']);?>
                     <?php echo($j['Studio']['name']);?>
+                    <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->ADMIN)) { ?>
                     <div style="float:right; margin-right:5px;vertical-align: text-top;">
                         <?php echo $this->Html->link($this->Html->image('remove_icon.png', array('style'=>'width:20px; border:none; margin:0px;')),
                         array('action'=>'ajax_delete_role',$j['UserRoleStudio']['id']),array('escape'=>false, 'class'=>'confirm_delete')) ?>
                     </div>
+                    <?php } ?>
                 </li>
                 <?php } ?>
+                <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->ADMIN)) { ?>
                 <li id="newRole" class="list-group-item" style="width:500px; height:46px;">
                     <?php
                             echo $this->Form->create('UserRoleStudio', array('url'=>'ajax_add_role', 'default' => false));
@@ -105,6 +113,7 @@
                     echo $this->Form->end();
                     ?>
                 </li>
+                <?php } ?>
                 <?php
                     // JsHelper should be loaded in $helpers in controller
                     // Form ID: #UserRoleStudioEditForm
