@@ -7,6 +7,7 @@
         $('#UserTcfilter :nth-child(1)').prop('selected', true);
         $('#UserSfilter :nth-child(1)').prop('selected', true);
         $('#UserStatfilter :nth-child(1)').prop('selected', true);
+        $('#UserEmailfilter :nth-child(1)').prop('selected', true);
     }
 </script>
 
