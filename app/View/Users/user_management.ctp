@@ -13,37 +13,38 @@
 <div class="users form">
     <h3 style="clear:none;margin-top:0px;">User Management</h3>
     <div style="float:right;">
-        <?php echo $this->Html->link( "Back to Admin", array('controller'=>'admin_pages', 'action'=>'admin_home'),array('escape' => false) ); ?>
+        <?php echo $this->Html->link("Back to Admin", array('controller'=>'admin_pages', 'action'=>'admin_home'),array('escape' => false)); ?>
     </div>
     <?php echo $this->Html->link( "Add A New User", array('action'=>'add'),array('escape' => false) ); ?>
+    <?php echo $this->Form->create('User', array('action'=>'user_management')); ?>
+    <br>
     <table id="hor-minimalist-b" style="margin:0px;">
         <tr>
-            <td style="white-space: nowrap;">First Name</td>
-            <td style="white-space: nowrap;">Last Name</td>
+            <td style="white-space: nowrap; text-align:right;border-bottom:none;">First Name</td>
+            <td style="border-bottom:none;"><?php echo $this->Form->input('fnfilter', array('label'=>'', 'style'=>'font-size:8px; width:150px; height:20px;')); ?></td>
+            <td style="white-space: nowrap; text-align:right;border-bottom:none;">Last Name</td>
+            <td style="border-bottom:none;"><?php echo $this->Form->input('lnfilter', array('label'=>'', 'style'=>'font-size:8px; width:150px; height:20px;')); ?></td>
+            <td style="white-space: nowrap; text-align:right;border-bottom:none;">Email</td>
+            <td style="border-bottom:none;"><?php echo $this->Form->input('emailfilter', array('label'=>'', 'style'=>'font-size:8px; width:150px; height:20px;')); ?></td>
             <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->ADMIN)) { ?>
-            <td>Role</td>
-            <?php } ?>
-            <td>Kung Fu</td>
-            <td>Tai Chi</td>
-            <td>Studio</td>
-            <td></td>
+            <td style="white-space: nowrap; text-align:right;border-bottom:none;">Role</td>
+            <td style="border-bottom:none;"><?php echo $this->Form->input('mrfilter', array('empty'=>'Choose Role', 'options' => $mrroles, 'label'=>'', 'style'=>'font-size:8px; width:150px; height:20px; white-space: nowrap;')); ?></td>
+            <?php }?>
         </tr>
         <tr>
-            <?php echo $this->Form->create('User', array('action'=>'user_management')); ?>
-            <td><?php echo $this->Form->input('fnfilter', array('label'=>'', 'style'=>'font-size:8px; width:50px; height:20px;')); ?></td>
-            <td><?php echo $this->Form->input('lnfilter', array('label'=>'', 'style'=>'font-size:8px; width:50px; height:20px;')); ?></td>
-            <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->ADMIN)) { ?>
-            <td><?php echo $this->Form->input('mrfilter', array('empty'=>'Choose Role', 'options' => $mrroles, 'label'=>'', 'style'=>'font-size:8px; width:150px; height:20px; white-space: nowrap;')); ?></td>
-            <?php }?>
+            <td style="white-space: nowrap; text-align:right;">Kung Fu</td>
             <td><?php echo $this->Form->input('kfrfilter', array('empty'=>'Choose Kung Fu Rank', 'options' => $kfranks, 'label'=>'', 'style'=>'font-size:8px; width:150px; height:20px;')); ?></td>
+            <td style="white-space: nowrap; text-align:right;">Tai Chi</td>
             <td><?php echo $this->Form->input('tcrfilter', array('empty'=>'Choose Tai Chi Rank', 'options' => $tcranks, 'label'=>'', 'style'=>'font-size:8px; width:150px; height:20px;')); ?></td>
+            <td style="white-space: nowrap; text-align:right;">Studio</td>
             <td><?php echo $this->Form->input('sfilter', array('empty'=>'Choose Studio', 'options' => $studios, 'label'=>'', 'style'=>'font-size:8px; width:150px; height:20px;')); ?></td>
+            <td style="white-space: nowrap; text-align:right;">Status</td>
             <td><?php echo $this->Form->input('statfilter', array('empty'=>'Choose Status', 'options' => $statuses, 'label'=>'', 'style'=>'font-size:8px; width:150px; height:20px;')); ?></td>
             <td><?php echo $this->Form->button('Clear', array('type'=>'reset', 'onclick'=>'clearSearchFilter();')); ?></td>
             <td><?php echo $this->Form->submit('Go!', array('div' => false,'class' => 'urclass', 'title' => 'Filter Results')); ?></td>
-            <?php echo $this->Form->end(); ?>
         </tr>
     </table>
+    <?php echo $this->Form->end(); ?>
     <br/>
     <?php if ($users) { ?>
     <?php echo $this->Paginator->prev('<< ' . __('previous', true), array(), null, array('class'=>'disabled'));?>

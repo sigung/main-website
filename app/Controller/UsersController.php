@@ -75,6 +75,7 @@ class UsersController extends AppController {
         $tcroleFilter = "";
         $studioFilter = "";
         $statusFilter = "";
+        $emailFilter = "";
 
         if (isset($this->params['data']['User'])) {
             $fnameFilter = $this->params['data']['User']['fnfilter'];
@@ -84,6 +85,7 @@ class UsersController extends AppController {
             $tcroleFilter = $this->params['data']['User']['tcrfilter'];
             $studioFilter = $this->params['data']['User']['sfilter'];
             $statusFilter = $this->params['data']['User']['statfilter'];
+            $emailFilter = $this->params['data']['User']['emailfilter'];
             $this->set('fnfilter', $fnameFilter);
             $this->set('lnfilter', $lnameFilter);
             $this->set('mrfilter', $mroleFilter);
@@ -91,6 +93,7 @@ class UsersController extends AppController {
             $this->set('tcrfilter', $tcroleFilter);
             $this->set('sfilter', $studioFilter);
             $this->set('statusfilter', $statusFilter);
+            $this->set('emailfilter', $emailFilter);
         }
 
         $roles = $this->Role->find('list', array('fields' => array('id', 'name'),'order'=>'id ASC'));
@@ -110,7 +113,7 @@ class UsersController extends AppController {
         $this->set('studios', $studioData);
         $this->set('statuses', $statusData);
         $this->User->Behaviors->load('Containable');
-        $conditions = $this->setupUserSearchConditions($fnameFilter, $lnameFilter, $mroleFilter, $kfroleFilter, $tcroleFilter, $studioFilter, $statusFilter);
+        $conditions = $this->setupUserSearchConditions($fnameFilter, $lnameFilter, $mroleFilter, $kfroleFilter, $tcroleFilter, $studioFilter, $statusFilter, $emailFilter);
         $this->paginate = array(
             'limit' => 25,
             'joins' =>  array(
@@ -458,7 +461,7 @@ class UsersController extends AppController {
         return $this->sendEmail($contactUsEmail, $subject, $body.' '.$email);
     }
 
-    private function setupUserSearchConditions($fnameFilter, $lnameFilter, $mroleFilter, $kfroleFilter, $tcroleFilter, $studioFilter, $statusFilter) {
+    private function setupUserSearchConditions($fnameFilter, $lnameFilter, $mroleFilter, $kfroleFilter, $tcroleFilter, $studioFilter, $statusFilter, $emailFilter) {
         $loggedInUserURS = $this->UserRoleStudio->find('all', array('conditions'=>array('user_id'=>$this->Auth->user('id'))));
         $viewStudioRights = $this->getStudioViewRights($loggedInUserURS);
         $conditions = array();
@@ -485,6 +488,9 @@ class UsersController extends AppController {
         }
         if (!empty($statusFilter)) {
             $conditions[]="status_id = ".$statusFilter;
+        }
+        if (!empty($emailFilter)) {
+            $conditions[]="User.email like '%".$emailFilter."%'";
         }
         return $conditions;
     }
