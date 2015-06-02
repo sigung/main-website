@@ -8,7 +8,7 @@ App::import('Vendor', 'PhpMailer', array('file' => 'phpmailer' . DS . 'PHPMailer
  * @property PaginatorComponent $Paginator
  */
 class StudentsController extends AppController {
-    public $uses = array('Manual', 'User', 'Role', 'Studio', 'UserRoleStudio', 'SystemProperty');
+    public $uses = array('Manual', 'User', 'Role', 'Studio', 'UserRoleStudio', 'SystemProperty', 'Skill', 'SkillType');
     public $helpers = array('User','Js' => array('Jquery'));
     public function beforeFilter() {
         parent::beforeFilter();
@@ -19,7 +19,7 @@ class StudentsController extends AppController {
     public function isAuthorized($user) {
         $userRoleStudio = $this->UserRoleStudio->find('first', array('conditions'=>array('user_id'=>$user['id'])));
         if (count($userRoleStudio)>0) {
-            if (in_array($this->action, array('learn', 'play', 'train', 'record'))) {
+            if (in_array($this->action, array('learn', 'play', 'train', 'record', 'speed_drill', 'ajax_get_skills'))) {
                 return true;
             }
         }
@@ -59,5 +59,30 @@ class StudentsController extends AppController {
             $this->log("There was a problem with the contact form email process.  Not a Post.");
         }
         $this->redirect(array('controller'=>'pages', 'action' => 'contact_us'));
+    }
+
+    public function speed_drill() {
+        $this->layout = 'activity';
+    }
+
+
+    public function ajax_get_skills() {
+        // set default class & message for setFlash
+        $class = 'flash_bad';
+        $msg   = 'Invalid List Id';
+
+        // output JSON on AJAX request
+        if($this->request->is('ajax')) {
+            $user = $this->User->find('first', array('conditions'=>array('User.id'=>$this->Auth->user('id'))));
+            $skillsForStudent = $this->Skill->find('all', array('fields' => array('name_tiny','name'), 'conditions'=>array('skill_type_id'=>5, 'kung_fu_rank_id <='.$user['User']['kung_fu_rank_id']), 'order'=>'Skill.id ASC'));
+            $this->set('skillsForStudent', $skillsForStudent);
+            $this->autoRender = $this->layout = false;
+            echo json_encode(array('skillsForStudent'=>($skillsForStudent)));
+            exit;
+        }
+
+        // set flash message & redirect
+        $this->Session->setFlash($msg,'default',array('class'=>$class));
+        $this->redirect(array('action'=>'index'));
     }
 }
