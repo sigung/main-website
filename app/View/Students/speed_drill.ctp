@@ -19,12 +19,12 @@
 
     function showNumber() {
         var rand = skills[Math.floor(Math.random() * skills.length)];
-        $("#comboSound").attr("src", "/ShaolinArts/audio/Combo"+rand+".mp3");
+        $("#comboSound").attr("src", "<?php echo Router::url('/') ?>audio/Combo"+rand+".mp3");
         $('#comboNumber').html(rand);
         document.getElementById('comboSound').play();
     }
 </script>
-<audio id="comboSound" src="/ShaolinArts/audio/Combo1.mp3" preload="auto"></audio>
+<audio id="comboSound" src="<?php echo Router::url('/') ?>audio/Combo1.mp3" preload="auto"></audio>
 <div id="comboNumber" style="font-size:300px;">
 
 </div>
