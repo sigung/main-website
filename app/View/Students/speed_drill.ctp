@@ -12,7 +12,7 @@
                 response.skillsForStudent.forEach(function(entry) {
                     skills.push(entry.Skill.name_tiny);
                 });
-                setInterval(function(){ showNumber() }, 3000);
+                setInterval(function(){ showNumber() }, 5000);
             }
         });
     });
