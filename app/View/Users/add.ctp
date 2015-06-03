@@ -1,4 +1,58 @@
 <?php echo $this->Form->create('User');?>
+<?php
+$usStates = array(
+"AL" => "Alabama",
+"AK" => "Alaska",
+"AZ" => "Arizona",
+"AR" => "Arkansas",
+"CA" => "California",
+"CO" => "Colorado",
+"CT" => "Connecticut",
+"DE" => "Delaware",
+"FL" => "Florida",
+"GA" => "Georgia",
+"HI" => "Hawaii",
+"ID" => "Idaho",
+"IL" => "Illinois",
+"IN" => "Indiana",
+"IA" => "Iowa",
+"KS" => "Kansas",
+"KY" => "Kentucky",
+"LA" => "Louisiana",
+"ME" => "Maine",
+"MD" => "Maryland",
+"MA" => "Massachusetts",
+"MI" => "Michigan",
+"MN" => "Minnesota",
+"MS" => "Mississippi",
+"MO" => "Missouri",
+"MT" => "Montana",
+"NE" => "Nebraska",
+"NV" => "Nevada",
+"NH" => "New Hampshire",
+"NJ" => "New Jersey",
+"NM" => "New Mexico",
+"NY" => "New York",
+"NC" => "North Carolina",
+"ND" => "North Dakota",
+"OH" => "Ohio",
+"OK" => "Oklahoma",
+"OR" => "Oregon",
+"PA" => "Pennsylvania",
+"RI" => "Rhode Island",
+"SC" => "South Carolina",
+"SD" => "South Dakota",
+"TN" => "Tennessee",
+"TX" => "Texas",
+"UT" => "Utah",
+"VT" => "Vermont",
+"VA" => "Virginia",
+"WA" => "Washington",
+"WV" => "West Virginia",
+"WI" => "Wisconsin",
+"WY" => "Wyoming"
+);?>
+
 <fieldset>
     <legend><?php echo __('Registration Form'); ?></legend>
     <?php if (AuthComponent::user()) { ?>
@@ -29,6 +83,25 @@
             <label class="login_label">Confirm Password*:</label>
             <?php echo $this->Form->input('password_confirm', array('label' => '', 'maxLength' => 255,
             'title' => 'Confirm password', 'type'=>'password')); ?>
+        </li>
+    </ul>
+
+    <ul class="list-group">
+        <li class="input-group list-group-item">
+            <label class="login_label">City*:</label>
+            <?php echo $this->Form->input('UserInfo.city', array('label'=>'', 'maxLength' => 32, 'title' => 'City')); ?>
+        </li>
+        <li class="input-group list-group-item">
+            <label class="login_label">State*:</label>
+            <?php echo $this->Form->input('UserInfo.state', array('empty'=>'Select a State', 'options' => $usStates, 'label'=>'', 'title'=>'State'));?>
+        </li>
+        <li class="input-group list-group-item">
+            <label class="login_label">Zip*:</label>
+            <?php echo $this->Form->input('UserInfo.zip', array('label'=>'', 'maxLength' => 32, 'title' => 'Zip')); ?>
+        </li>
+        <li class="input-group list-group-item">
+            <label class="login_label">Phone:</label>
+            <?php echo $this->Form->input('UserInfo.homephone', array('label'=>'', 'maxLength' => 32, 'title' => 'Phone')); ?>
         </li>
         <?php if (AuthComponent::user()) { ?>
             <?php echo $this->Form->hidden('status_id', array('value'=>3)); ?>

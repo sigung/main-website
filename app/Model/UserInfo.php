@@ -13,7 +13,26 @@ class UserInfo extends AppModel {
                 'rule' => 'notEmpty',
                 'message' => 'Please provide a valid last name.'
             )
+        ),
+        'city' => array(
+            'required' => array(
+                'rule' => 'notEmpty',
+                'message' => 'Please provide a valid city.'
+            )
+        ),
+        'state' => array(
+            'required' => array(
+            'rule' => 'notEmpty',
+            'message' => 'Please provide a valid state.'
+            )
+        ),
+        'zip' => array(
+            'required' => array(
+            'rule' => 'notEmpty',
+            'message' => 'Please provide a valid zip.'
+            )
         )
+
     );
     }
 ?>
