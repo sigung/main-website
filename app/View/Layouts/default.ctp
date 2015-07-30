@@ -7,8 +7,8 @@
     <meta name="Keywords"
           content="Kung Fu, Tai Chi, Tai Chi Chuan, self defense, karate, fitness, sandy, Utah, Arizona, Marital Arts">
     <meta name="Description"
-          content="Shaolin Arts is a family system of martial arts over 3,000 years old. Common western terms used to describe it would be Kung Fu, Tai Chi Chuan, Karate, Self Defense, Wushu, Animal Styles, Mixed Martial Arts, Chi Qi Gung or grappling. ">
-    <title>Shaolin Arts</title>
+          content="<?php echo($pageDescription);?>">
+    <title><?php echo($pageTitle);?></title>
     <?php
         echo $this->Html->css('persistant');
         echo $this->Html->css('datepicker');
