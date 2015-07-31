@@ -37,6 +37,17 @@ public $uses = array('Contact', 'ContentForPage');
         $this->set('pageContent', $pageContent['ContentForPage']['content']);
         $this->set('pageContentAside', $pageContent['ContentForPage']['contentAside']);
         $this->set('pageContentId', $pageContent['ContentForPage']['id']);
+        $this->set('pageTitle', 'Shaolin Arts - Martial Arts');
+        if ($pageContent['ContentForPage']['title'] != null)
+        {
+            $this->set('pageTitle', $pageContent['ContentForPage']['title']);
+        }
+        $this->set('pageDescription', 'Shaolin Arts is a family system of martial arts over 3,000 years old. Common western terms used to describe it would be Kung Fu, Tai Chi Chuan, Karate, Self Defense, Wushu, Animal Styles, Mixed Martial Arts, Chi Qi Gung or grappling.');
+        if ($pageContent['ContentForPage']['meta_description'] != null)
+        {
+            $this->set('pageDescription', $pageContent['ContentForPage']['meta_description']);
+        }
+
 		$this->set(compact('page', 'subpage', 'title_for_layout'));
 
 		try {
