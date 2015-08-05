@@ -9,7 +9,8 @@ $('.bxslider').bxSlider({
   auto: true,
   adaptiveHeight: true,
   controls:false,
-  pause: 6000
+  pause: 6000,
+  captions: true
 });
 });
  </script>

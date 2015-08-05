@@ -44,6 +44,11 @@
         <div class="row corpus">
             <?php echo $this->Form->create('ContentForPage', array('action'=>'edit')); ?>
             <?php echo $this->Form->hidden('id', array('value'=>$pageContentId)); ?>
+            <?php
+                $sideColumnMD = 12;
+                if ($isSideColumn) {
+                $sideColumnMD = 9;
+            ?>
             <div class="col-md-3 asideColumn hidden-xs hidden-sm">
                 <section class="contentCol cms-editable editable-content" id="editContent" style="display:none;">
                     <?php echo $this->Form->input('contentAside', array('type' => 'textarea', 'label'=>'', 'cols'=>'30', 'rows'=>'60', 'value'=>$pageContentAside, 'escape'=>false));?>
@@ -52,7 +57,8 @@
                     <?php echo($pageContentAside);?>
                 </aside>
             </div>
-            <div class="col-md-9 sectionContent">
+            <?php } ?>
+            <div class="col-md-<?php echo $sideColumnMD; ?> sectionContent">
                 <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->ADMIN)) {  ?>
                 <div style="position:absolute; right:20px;'">
                     <?php echo $this->Html->link('Edit Content', '#', array('onclick'=>'showEdit()', 'class'=>'noEdit')) ?>
