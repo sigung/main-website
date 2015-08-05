@@ -38,6 +38,7 @@ public $uses = array('Contact', 'ContentForPage');
         $this->set('pageContentAside', $pageContent['ContentForPage']['contentAside']);
         $this->set('pageContentId', $pageContent['ContentForPage']['id']);
         $this->set('pageTitle', 'Shaolin Arts - Martial Arts');
+        $this->set('isSideColumn', $pageContent['ContentForPage']['sideColumn']);
         if ($pageContent['ContentForPage']['title'] != null)
         {
             $this->set('pageTitle', $pageContent['ContentForPage']['title']);

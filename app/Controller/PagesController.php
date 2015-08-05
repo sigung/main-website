@@ -43,7 +43,6 @@ class PagesController extends AppController {
         $this->set('pageContentId', $pageContent['ContentForPage']['id']);
         $this->set('pageTitle', 'Shaolin Arts - Martial Arts');
         $this->set('isSideColumn', $pageContent['ContentForPage']['sideColumn']);
-        $this->log($pageContent);
         if ($pageContent['ContentForPage']['title'] != null)
         {
             $this->set('pageTitle', $pageContent['ContentForPage']['title']);
