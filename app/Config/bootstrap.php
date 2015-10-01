@@ -105,8 +105,8 @@ CakeLog::config('error', array(
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
-
-
+CakePlugin::load( array( 'Blog' => array( 'routes' => True ) ) );
+CakePlugin::load('HabtmCounterCache');
 
 /**
 *  APP CONSTANTS

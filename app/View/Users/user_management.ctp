@@ -112,7 +112,7 @@
             <td style="font-size: 8px;">
                 <div style="white-space: nowrap"><?php echo $user['UserInfo']['address']; ?></div>
                 <div style="white-space: nowrap">
-                    <?php if (!empty($user['UserInfo']['spouseguardian'])) { ?><?php echo $user['UserInfo']['city']; ?>,<?php } ?>
+                    <?php echo $user['UserInfo']['city']; ?>,
                     <?php echo $user['UserInfo']['state']; ?> <?php echo $user['UserInfo']['zip']; ?>
                 </div>
             </td>
