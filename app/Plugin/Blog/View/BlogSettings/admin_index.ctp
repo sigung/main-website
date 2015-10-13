@@ -20,7 +20,7 @@
 		<td><?php echo h($blogSetting['BlogSetting']['id']); ?>&nbsp;</td>
 		<td><?php echo h($this->Text->truncate($blogSetting['BlogSetting']['setting_text'], 100)); ?>&nbsp;</td>
 		<td><?php echo h($this->Text->truncate($blogSetting['BlogSetting']['value'], 100)); ?>&nbsp;</td>
-		<td><?php echo $this->Time->nice($blogSetting['BlogSetting']['modified']); ?>&nbsp;</td>
+		<td><?php echo $blogSetting['BlogSetting']['modified']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $blogSetting['BlogSetting']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $blogSetting['BlogSetting']['id'])); ?>

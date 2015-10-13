@@ -18,6 +18,23 @@ class BlogSettingsController extends AppController {
 
 	public $helpers = array('Text', 'Time');
 
+    public function beforeFilter() {
+        parent::beforeFilter();
+        $this->Auth->allow('index');
+        $this->layout = 'blog';
+    }
+
+  public function isAuthorized($user) {
+//      if (in_array($this->action, array('user_home', 'user_password_reset', 'account', 'extra'))) {
+//          return true;
+//      }
+//      if ($this->isAuthorizedByRole($user, array('learn', 'play', 'train', 'record'), $this->STUDENT)) return true;
+//      if ($this->isAuthorizedByRole($user, array('user_management', 'edit', 'ajax_delete_comment','ajax_add_comment'), $this->INSMANAGER)) return true;
+//      return parent::isAdmin($user);
+        return true;
+  }
+
+
 /**
  * admin_index method
  *

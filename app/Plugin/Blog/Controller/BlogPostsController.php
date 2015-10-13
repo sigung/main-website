@@ -36,11 +36,12 @@ class BlogPostsController extends AppController {
     'recursive' => 0,
   );
 
-  public function beforeFilter() {
-    parent::beforeFilter();
-    $this->set('blogSettings', ClassRegistry::init('Blog.BlogSetting')->getSettings());
-    $this->layout = 'user';
-  }
+      public function beforeFilter() {
+          parent::beforeFilter();
+          $this->set('blogSettings', ClassRegistry::init('Blog.BlogSetting')->getSettings());
+          $this->Auth->allow('index');
+          $this->layout = 'blog';
+      }
 
 
   public function isAuthorized($user) {

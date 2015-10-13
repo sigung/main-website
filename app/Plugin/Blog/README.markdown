@@ -36,7 +36,7 @@ Installation
     git submodule add git://github.com/neilcrookes/CakePHP-Blog-Plugin.git app/Plugin/Blog
 
 or download from http://github.com/neilcrookes/CakePHP-Blog-Plugin
-
+{
 Add the following line to your /app/config/bootstrap.php
 
     CakePlugin::load( array( 'Blog' => array( 'routes' => True ) ) );
@@ -74,3 +74,6 @@ License
 -------
 
 The MIT License
+
+admin example:
+//http://localhost/shaolinarts/admin/blog/blogposts/add

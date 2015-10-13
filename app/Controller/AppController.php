@@ -86,7 +86,7 @@ class AppController extends Controller {
 
     public function beforeFilter() {
         //$this->Auth->allow('index', 'view');
-        $this->__checkSSL();
+        //$this->__checkSSL();
     }
 
     public $secureControllers = array('users','adminPages');
@@ -118,7 +118,7 @@ class AppController extends Controller {
      */
     function __forceSSL() {
        // if (strstr(env('SERVER_NAME'), 'www.')) {
-            $this->redirect('https://' . env('SERVER_NAME') . $this->here);
+         //   $this->redirect('https://' . env('SERVER_NAME') . $this->here);
         //} else {
          //   $this->redirect('https://www.' . env('SERVER_NAME') . $this->here);
         //}
@@ -131,7 +131,7 @@ class AppController extends Controller {
     function __unforceSSL() {
         //if (strstr(env('SERVER_NAME'), 'www.')) {
            // $server = substr(env('SERVER_NAME'), 4);
-            $this->redirect('http://' . env('SERVER_NAME') . $this->here);
+        //    $this->redirect('http://' . env('SERVER_NAME') . $this->here);
         //} else {
        //     $this->redirect('http://' . env('SERVER_NAME') . $this->here);
         //}
