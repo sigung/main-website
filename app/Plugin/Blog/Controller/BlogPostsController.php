@@ -45,13 +45,7 @@ class BlogPostsController extends AppController {
 
 
   public function isAuthorized($user) {
-//      if (in_array($this->action, array('user_home', 'user_password_reset', 'account', 'extra'))) {
-//          return true;
-//      }
-//      if ($this->isAuthorizedByRole($user, array('learn', 'play', 'train', 'record'), $this->STUDENT)) return true;
-//      if ($this->isAuthorizedByRole($user, array('user_management', 'edit', 'ajax_delete_comment','ajax_add_comment'), $this->INSMANAGER)) return true;
-//      return parent::isAdmin($user);
-        return true;
+      return true;
   }
 
   /**
@@ -200,14 +194,14 @@ class BlogPostsController extends AppController {
    * View a blog post
    */
   public function view() {
-
-    if (empty($this->params['named']['slug'])) {
+  $this->log($this->params);
+    if (empty($this->params['slug'])) {
       throw new NotFoundException(__('Invalid Blog Post'));
     }
 
     $blogPost = $this->BlogPost->find('forView', array(
       'conditions' => array(
-        'BlogPost.slug' => $this->params['named']['slug'],
+        'BlogPost.slug' => $this->params['slug'],
       )
     ));
 
