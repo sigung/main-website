@@ -8,7 +8,7 @@ App::import('Vendor', 'PhpMailer', array('file' => 'phpmailer' . DS . 'PHPMailer
  * @property PaginatorComponent $Paginator
  */
 class StudentsController extends AppController {
-    public $uses = array('Manual', 'User', 'Role', 'Studio', 'UserRoleStudio', 'SystemProperty', 'Skill', 'SkillType');
+    public $uses = array('Manual', 'User', 'Role', 'Studio', 'UserRoleStudio', 'SystemProperty', 'Skill', 'SkillType', 'AnimalTechnique');
     public $helpers = array('User','Js' => array('Jquery'));
     public function beforeFilter() {
         parent::beforeFilter();
@@ -19,7 +19,7 @@ class StudentsController extends AppController {
     public function isAuthorized($user) {
         $userRoleStudio = $this->UserRoleStudio->find('first', array('conditions'=>array('user_id'=>$user['id'])));
         if (count($userRoleStudio)>0) {
-            if (in_array($this->action, array('learn', 'play', 'train', 'record', 'speed_drill', 'ajax_get_skills'))) {
+            if (in_array($this->action, array('learn', 'play', 'train', 'record', 'speed_drill', 'ajax_get_skills', 'addTechnique'))) {
                 return true;
             }
         }
@@ -34,7 +34,25 @@ class StudentsController extends AppController {
 
     public function play() {}
     public function train() {}
-    public function record() {}
+
+    public function record() {
+        $techniques = $this->AnimalTechnique->find('all', array('conditions'=>array('User.id'=>$this->Auth->user('id'))));
+        $this->set('techniques', $techniques);
+    }
+
+    public function addTechnique() {
+        if ($this->request->is('post')) {
+            $this->AnimalTechnique->create();
+            if ($this->AnimalTechnique->save($this->request->data)) {
+                $this->Session->setFlash(__('The technique has been saved.'));
+                return $this->redirect(array('action' => 'index'));
+            } else {
+                $this->Session->setFlash(__('The technique could not be saved. Please, try again.'));
+            }
+        }
+        $this->redirect(array('controller'=>'students', 'action'=>'record'));
+    }
+
     public function extra() {}
 
     public function sendContactMessage() {
