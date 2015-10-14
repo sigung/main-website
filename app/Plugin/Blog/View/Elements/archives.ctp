@@ -3,11 +3,11 @@ if (empty($archives)) {
   return;
 }
 ?>
-<section class="blog" id="archives">
-  <header class="blog">
-    <h3><?php echo __('Archives'); ?></h3>
-  </header>
+<div class="blog" id="archives">
+  <div class="blog">
+    <span><?php echo __('Blog Archive'); ?></span>
+  </div>
   <nav>
     <?php echo $this->Blog->nav($archives); ?>
   </nav>
-</section>
+</div>

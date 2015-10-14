@@ -1,19 +1,20 @@
 <div class="blogPostCategories index">
 	<h2><?php echo __('Blog Post Categories');?></h2>
-	<table cellpadding="0" cellspacing="0">
-	<tr>
-			<th><?php echo $this->Paginator->sort('id');?></th>
-			<th><?php echo $this->Paginator->sort('parent_id');?></th>
-			<th><?php echo $this->Paginator->sort('lft');?></th>
-			<th><?php echo $this->Paginator->sort('rght');?></th>
-			<th><?php echo $this->Paginator->sort('name');?></th>
-			<th><?php echo $this->Paginator->sort('slug');?></th>
-			<th><?php echo $this->Paginator->sort('blog_post_count');?></th>
-			<th><?php echo $this->Paginator->sort('under_blog_post_count');?></th>
-			<th><?php echo $this->Paginator->sort('created');?></th>
-			<th><?php echo $this->Paginator->sort('modified');?></th>
-			<th class="actions"><?php echo __('Actions');?></th>
-	</tr>
+    <table id="pattern-style-b" style="margin:0px;">
+        <thead>
+            <tr>
+                    <th><?php echo $this->Paginator->sort('parent_id');?></th>
+                    <th><?php echo $this->Paginator->sort('lft');?></th>
+                    <th><?php echo $this->Paginator->sort('rght');?></th>
+                    <th><?php echo $this->Paginator->sort('name');?></th>
+                    <th><?php echo $this->Paginator->sort('slug');?></th>
+                    <th style="white-space: nowrap;"><?php echo $this->Paginator->sort('blog_post_count');?></th>
+                    <th style="white-space: nowrap;"><?php echo $this->Paginator->sort('under_blog_post_count');?></th>
+                    <th><?php echo $this->Paginator->sort('created');?></th>
+                    <th><?php echo $this->Paginator->sort('modified');?></th>
+                    <th class="actions"><?php echo __('Actions');?></th>
+            </tr>
+        </thead>
 	<?php
 	$i = 0;
 	foreach ($blogPostCategories as $blogPostCategory):
@@ -23,7 +24,6 @@
 		}
 	?>
 	<tr<?php echo $class;?>>
-		<td><?php echo h($blogPostCategory['BlogPostCategory']['id']); ?>&nbsp;</td>
 		<td><?php echo h($blogPostCategory['BlogPostCategory']['parent_id']); ?>&nbsp;</td>
 		<td><?php echo h($blogPostCategory['BlogPostCategory']['lft']); ?>&nbsp;</td>
 		<td><?php echo h($blogPostCategory['BlogPostCategory']['rght']); ?>&nbsp;</td>
@@ -31,8 +31,8 @@
 		<td><?php echo h($blogPostCategory['BlogPostCategory']['slug']); ?>&nbsp;</td>
 		<td><?php echo h($blogPostCategory['BlogPostCategory']['blog_post_count']); ?>&nbsp;</td>
 		<td><?php echo h($blogPostCategory['BlogPostCategory']['under_blog_post_count']); ?>&nbsp;</td>
-		<td><?php echo h($blogPostCategory['BlogPostCategory']['created']); ?>&nbsp;</td>
-		<td><?php echo h($blogPostCategory['BlogPostCategory']['modified']); ?>&nbsp;</td>
+		<td style="white-space: nowrap; text-align:right;"><?php echo $this->Time->nice(h($blogPostCategory['BlogPostCategory']['created'])); ?>&nbsp;</td>
+		<td style="white-space: nowrap; text-align:right;"><?php echo $this->Time->nice(h($blogPostCategory['BlogPostCategory']['modified'])); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $blogPostCategory['BlogPostCategory']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $blogPostCategory['BlogPostCategory']['id'])); ?>

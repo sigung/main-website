@@ -78,7 +78,7 @@
     <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->INSMANAGER)) {  ?>
     <li>
         <div style="height:190px;">
-            <?php echo $this->Html->link($this->Html->image('userImages/admin.png', array('alt' => 'Account', 'border' => '0', 'width' => '225', 'style'=>'border:none;')), '/admin_pages/admin_home', array('escape' => false)) ?>
+            <?php echo $this->Html->link($this->Html->image('userImages/admin.png', array('alt' => 'Account', 'border' => '0', 'width' => '225', 'style'=>'border:none;')), '/administrative_pages/home', array('escape' => false)) ?>
         </div>
         <p style="text-align:center; font-weight:bold;">Admin</p>
     </li>

@@ -89,7 +89,7 @@ class AppController extends Controller {
         //$this->__checkSSL();
     }
 
-    public $secureControllers = array('users','adminPages');
+    public $secureControllers = array('users','administrativePages');
 
     /**
      * Check SSL connection.

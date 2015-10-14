@@ -1,7 +1,7 @@
 <div class="commonEmailMessages index">
     <h3 style="clear:none;margin-top:0px;"><?php echo __('Common Email Messages'); ?></h3>
     <div style="float:right;">
-        <?php echo $this->Html->link("Back to Admin", array('controller'=>'admin_pages', 'action'=>'admin_home'),array('escape' => false) ); ?>
+        <?php echo $this->Html->link("Back to Admin", array('controller'=>'administrative_pages', 'action'=>'home'),array('escape' => false) ); ?>
     </div>
     <?php echo $this->Html->link("Add A Common Email Message", array('action'=>'add'),array('escape' => false) ); ?>
 	<table cellpadding="0" cellspacing="0" id="pattern-style-b">

@@ -1,17 +1,16 @@
 <div class="blogPosts index">
 	<h2><?php echo __('Blog Posts');?></h2>
-	<table cellpadding="0" cellspacing="0">
-	<tr>
-			<th><?php echo $this->Paginator->sort('id');?></th>
-			<th><?php echo $this->Paginator->sort('title');?></th>
-			<th><?php echo $this->Paginator->sort('slug');?></th>
-			<th><?php echo $this->Paginator->sort('published');?></th>
-			<th><?php echo $this->Paginator->sort('sticky');?></th>
-			<th><?php echo $this->Paginator->sort('in_rss');?></th>
-			<th><?php echo $this->Paginator->sort('created');?></th>
-			<th><?php echo $this->Paginator->sort('modified');?></th>
-			<th class="actions"><?php echo __('Actions');?></th>
-	</tr>
+    <table id="pattern-style-b" style="margin:0px;">
+        <thead>
+            <tr>
+                    <th style=border-bottom:none;"><?php echo $this->Paginator->sort('title');?></th>
+                    <th style="white-space: nowrap; border-bottom:none;"><?php echo $this->Paginator->sort('slug');?></th>
+                    <th style=border-bottom:none;"><?php echo $this->Paginator->sort('published');?></th>
+                    <th style="white-space: nowrap; border-bottom:none;"><?php echo $this->Paginator->sort('created');?></th>
+                    <th style=border-bottom:none;"><?php echo $this->Paginator->sort('modified');?></th>
+                    <th class="actions" style="white-space: nowrap; text-align:right;border-bottom:none;"><?php echo __('Actions');?></th>
+            </tr>
+        </thead>
 	<?php
 	$i = 0;
 	foreach ($blogPosts as $blogPost):
@@ -21,15 +20,12 @@
 		}
 	?>
 	<tr<?php echo $class;?>>
-		<td><?php echo h($blogPost['BlogPost']['id']); ?>&nbsp;</td>
-		<td><?php echo h($blogPost['BlogPost']['title']); ?>&nbsp;</td>
-		<td><?php echo h($blogPost['BlogPost']['slug']); ?>&nbsp;</td>
+		<td style="white-space: nowrap; text-align:right;"><?php echo h($blogPost['BlogPost']['title']); ?>&nbsp;</td>
+		<td style="white-space: nowrap; text-align:right;"><?php echo h($blogPost['BlogPost']['slug']); ?>&nbsp;</td>
 		<td><?php echo h($blogPost['BlogPost']['published']); ?>&nbsp;</td>
-		<td><?php echo h($blogPost['BlogPost']['sticky']); ?>&nbsp;</td>
-		<td><?php echo h($blogPost['BlogPost']['in_rss']); ?>&nbsp;</td>
-		<td><?php echo h($blogPost['BlogPost']['created']); ?>&nbsp;</td>
-		<td><?php echo h($blogPost['BlogPost']['modified']); ?>&nbsp;</td>
-		<td class="actions">
+		<td style="white-space: nowrap; text-align:right;"><?php echo $this->Time->nice(h($blogPost['BlogPost']['created'])); ?>&nbsp;</td>
+		<td style="white-space: nowrap; text-align:right;"><?php echo $this->Time->nice(h($blogPost['BlogPost']['modified'])); ?>&nbsp;</td>
+		<td style="white-space: nowrap; text-align:right;" class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $blogPost['BlogPost']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $blogPost['BlogPost']['id'])); ?>
 			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $blogPost['BlogPost']['id']), null, __('Are you sure you want to delete # %s?', $blogPost['BlogPost']['id'])); ?>

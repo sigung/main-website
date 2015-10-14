@@ -11,34 +11,34 @@
  */
 class BlogPostTagsController extends AppController {
 
+    public function beforeFilter() {
+        parent::beforeFilter();
+        $this->Auth->allow('index');
+        $this->layout = 'blog';
+    }
 
-  public function isAuthorized($user) {
-//      if (in_array($this->action, array('user_home', 'user_password_reset', 'account', 'extra'))) {
-//          return true;
-//      }
-//      if ($this->isAuthorizedByRole($user, array('learn', 'play', 'train', 'record'), $this->STUDENT)) return true;
-//      if ($this->isAuthorizedByRole($user, array('user_management', 'edit', 'ajax_delete_comment','ajax_add_comment'), $this->INSMANAGER)) return true;
-//      return parent::isAdmin($user);
+
+    public function isAuthorized($user) {
         return true;
-  }
+    }
 
 
-/**
- * index method
- *
- * @return void
- */
+    /**
+     * index method
+     *
+     * @return void
+     */
 	public function admin_index() {
 		$this->BlogPostTag->recursive = 0;
 		$this->set('blogPostTags', $this->paginate());
 	}
 
-/**
- * view method
- *
- * @param string $id
- * @return void
- */
+    /**
+     * view method
+     *
+     * @param string $id
+     * @return void
+     */
 	public function admin_view($id = null) {
 		$this->BlogPostTag->id = $id;
 		if (!$this->BlogPostTag->exists()) {
@@ -47,11 +47,11 @@ class BlogPostTagsController extends AppController {
 		$this->set('blogPostTag', $this->BlogPostTag->read(null, $id));
 	}
 
-/**
- * add method
- *
- * @return void
- */
+    /**
+    * add method
+    *
+    * @return void
+    */
 	public function admin_add() {
 		if ($this->request->is('post')) {
 			$this->BlogPostTag->create();
@@ -64,12 +64,12 @@ class BlogPostTagsController extends AppController {
 		}
 	}
 
-/**
- * edit method
- *
- * @param string $id
- * @return void
- */
+    /**
+    * edit method
+    *
+    * @param string $id
+    * @return void
+    */
 	public function admin_edit($id = null) {
 		$this->BlogPostTag->id = $id;
 		if (!$this->BlogPostTag->exists()) {

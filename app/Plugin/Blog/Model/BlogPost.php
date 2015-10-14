@@ -53,6 +53,7 @@ class BlogPost extends AppModel {
 			'isUnique' => array(
 				'rule' => 'isUnique',
 				'message' => 'This slug is already in use',
+				'on' => 'create'
 			),
 		),
 		'published' => array(

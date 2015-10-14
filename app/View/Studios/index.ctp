@@ -1,7 +1,7 @@
 <div class="studios index">
     <h3 style="clear:none;margin-top:0px;"><?php echo __('Studios'); ?></h3>
     <div style="float:right;">
-        <?php echo $this->Html->link("Back to Admin", array('controller'=>'admin_pages', 'action'=>'admin_home'),array('escape' => false) ); ?>
+        <?php echo $this->Html->link("Back to Admin", array('controller'=>'administrative_pages', 'action'=>'admin_home'),array('escape' => false) ); ?>
     </div>
     <?php echo $this->Html->link("Add A New Studio", array('action'=>'add'),array('escape' => false) ); ?>
 

@@ -1,5 +1,5 @@
 <div class="row corpus">
-    <div class="col-md-9" id="content">
+    <div class="col-md-9" id="content" style="border-right: #AAA 1px solid;">
 
       <?php if ($this->Blog->filtered()) : ?>
         <p>Showing posts <?php echo $this->Blog->filterDescription(); ?>, <?php echo $this->Html->link(__('Show all', true), array('action' => 'index')); ?></p>
@@ -46,36 +46,15 @@
 
     </div>
     <div class="col-md-3 asideColumn hidden-xs hidden-sm">
-    <aside class="contentCol noEdit blog">
+        <div style="margin-left:20px;">
 
-      <?php echo $this->element('archives'); ?>
-      <?php echo $this->element('categories'); ?>
-      <?php echo $this->element('tag_cloud'); ?>
+          <?php echo $this->element('archives'); ?>
+          <?php echo $this->element('categories'); ?>
+          <?php echo $this->element('tag_cloud'); ?>
 
-    </aside>
+        </div>
     </div>
 </div>
-<?php if (strtolower($blogSettings['use_disqus']) == 'yes') : ?>
-
-  <script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = '<?php echo $blogSettings['disqus_shortname']; ?>'; // required: replace example with your forum shortname
-
-    <?php if (strtolower($blogSettings['disqus_developer']) == 'yes') : ?>
-      var disqus_developer = 1;
-    <?php endif; ?>
-
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-  </script>
-
-<?php endif; ?>
-
 <?php
 
 // Set the meta title, description and keywords according to the default

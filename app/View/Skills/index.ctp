@@ -1,5 +1,5 @@
 <div style="float:right;">
-    <?php echo $this->Html->link("Back to Admin", array('controller'=>'admin_pages', 'action'=>'admin_home'),array('escape' => false) ); ?>
+    <?php echo $this->Html->link("Back to Admin", array('controller'=>'administrative_pages', 'action'=>'home'),array('escape' => false) ); ?>
 </div>
 <br>
 <br>

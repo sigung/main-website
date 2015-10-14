@@ -1,15 +1,17 @@
 <div class="blogPostTags index">
 	<h2><?php echo __('Blog Post Tags');?></h2>
-	<table cellpadding="0" cellspacing="0">
-	<tr>
-			<th><?php echo $this->Paginator->sort('id');?></th>
-			<th><?php echo $this->Paginator->sort('name');?></th>
-			<th><?php echo $this->Paginator->sort('slug');?></th>
-			<th><?php echo $this->Paginator->sort('blog_post_count');?></th>
-			<th><?php echo $this->Paginator->sort('created');?></th>
-			<th><?php echo $this->Paginator->sort('modified');?></th>
-			<th class="actions"><?php echo __('Actions');?></th>
-	</tr>
+    <table id="pattern-style-b" style="margin:0px;">
+        <thead>
+            <tr>
+                <th><?php echo $this->Paginator->sort('id');?></th>
+                <th><?php echo $this->Paginator->sort('name');?></th>
+                <th><?php echo $this->Paginator->sort('slug');?></th>
+                <th style="white-space: nowrap;"><?php echo $this->Paginator->sort('blog_post_count');?></th>
+                <th><?php echo $this->Paginator->sort('created');?></th>
+                <th><?php echo $this->Paginator->sort('modified');?></th>
+                <th class="actions"><?php echo __('Actions');?></th>
+	        </tr>
+        </thead>
 	<?php
 	$i = 0;
 	foreach ($blogPostTags as $blogPostTag):
@@ -20,12 +22,12 @@
 	?>
 	<tr<?php echo $class;?>>
 		<td><?php echo h($blogPostTag['BlogPostTag']['id']); ?>&nbsp;</td>
-		<td><?php echo h($blogPostTag['BlogPostTag']['name']); ?>&nbsp;</td>
+		<td style="white-space: nowrap;"><?php echo h($blogPostTag['BlogPostTag']['name']); ?>&nbsp;</td>
 		<td><?php echo h($blogPostTag['BlogPostTag']['slug']); ?>&nbsp;</td>
 		<td><?php echo h($blogPostTag['BlogPostTag']['blog_post_count']); ?>&nbsp;</td>
-		<td><?php echo h($blogPostTag['BlogPostTag']['created']); ?>&nbsp;</td>
-		<td><?php echo h($blogPostTag['BlogPostTag']['modified']); ?>&nbsp;</td>
-		<td class="actions">
+		<td style="white-space: nowrap; text-align:right;"><?php echo $this->Time->nice(h($blogPostTag['BlogPostTag']['created'])); ?>&nbsp;</td>
+		<td style="white-space: nowrap; text-align:right;"><?php echo $this->Time->nice(h($blogPostTag['BlogPostTag']['modified'])); ?>&nbsp;</td>
+		<td  style="white-space: nowrap;" class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $blogPostTag['BlogPostTag']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $blogPostTag['BlogPostTag']['id'])); ?>
 			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $blogPostTag['BlogPostTag']['id']), null, __('Are you sure you want to delete # %s?', $blogPostTag['BlogPostTag']['id'])); ?>

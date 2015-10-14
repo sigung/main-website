@@ -31,7 +31,7 @@
         <div class="row corpus">
             <!--<div class="col-md-3 asideColumn hidden-xs hidden-sm">-->
                 <!--<aside class="contentCol">-->
-                    <!--<?php echo $this->element('admin_pages_column'); ?>-->
+                    <!--<?php echo $this->element('     admin_pages_column'); ?>-->
                 <!--</aside>-->
             <!--</div>-->
             <div class="col-md-12 sectionContent">
