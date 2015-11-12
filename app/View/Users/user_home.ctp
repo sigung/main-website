@@ -38,12 +38,12 @@
         </div>
         <p style="text-align:center; font-weight:bold; bottom:5px;">Train</p>
     </li>
-    <!--<li>-->
-        <!--<div style="height:190px;">-->
-            <!--<?php echo $this->Html->link($this->Html->image('userImages/record.png', array('alt' => 'Record', 'border' => '0', 'width' => '225', 'style'=>'border:none;')), '/students/record', array('escape' => false)) ?>-->
-        <!--</div>-->
-        <!--<p style="text-align:center; font-weight:bold; bottom:5px;">Record</p>-->
-    <!--</li>-->
+    <li>
+        <div style="height:190px;">
+            <?php echo $this->Html->link($this->Html->image('userImages/record.png', array('alt' => 'Record', 'border' => '0', 'width' => '225', 'style'=>'border:none;')), '/students/record', array('escape' => false)) ?>
+        </div>
+        <p style="text-align:center; font-weight:bold; bottom:5px;">Record</p>
+    </li>
     <!--<li>-->
         <!--<div style="height:190px;">-->
             <!--<?php echo $this->Html->link($this->Html->image('userImages/learn.png', array('alt' => 'Learn', 'border' => '0', 'width' => '225', 'style'=>'border:none;')), '/students/learn', array('escape' => false)) ?>-->

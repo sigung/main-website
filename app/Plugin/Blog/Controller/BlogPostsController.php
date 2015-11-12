@@ -53,7 +53,6 @@ class BlogPostsController extends AppController {
    * category, tag or archive, or rendered as HTML or RSS
    */
   public function index() {
-
     $this->paginate['conditions'][]['BlogPost.published'] = 1;
 
     if ($this->RequestHandler->isRss()) {
