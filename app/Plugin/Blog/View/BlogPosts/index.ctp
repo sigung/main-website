@@ -9,14 +9,12 @@
 
         <?php foreach ($blogPosts as $blogPost) : ?>
 
-          <article<?php if ($blogPost['BlogPost']['sticky']) {echo ' class="sticky"';} ?>>
+          <article<?php if ($blogPost['BlogPost']['sticky']) {echo ' class="sticky"';} ?> style="margin-left:40px; margin-right:80px;">
 
         <time pubdate datetime="<?php echo date('c', $createdTimestamp = strtotime($blogPost['BlogPost']['created'])); ?>">
             <?php echo date($blogSettings['published_format_on_post_index'], $createdTimestamp); ?>
         </time>
           <h2><?php echo $this->Html->link($blogPost['BlogPost']['title'], array('action' => 'view', 'slug' => $blogPost['BlogPost']['slug']), array('class'=>'title', 'title' => $blogPost['BlogPost']['title'], 'rel' => 'bookmark')); ?></h2>
-
-
               <div class="post">
                 <?php echo $blogPost['BlogPost']['body']; ?>
               </div>
