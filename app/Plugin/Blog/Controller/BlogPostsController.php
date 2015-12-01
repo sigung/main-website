@@ -60,7 +60,7 @@ class BlogPostsController extends AppController {
       // Add RSS condition to default options defined in paginate
       $options = array_merge(
         $this->paginate,
-        array('conditions' => array('BlogPost.in_rss' => 1),
+        array('conditions' => array('BlogPost.in_rss' => 1, 'BlogPost.published'=>1),
               'order' => array('BlogPost.created desc')
         )
       );
