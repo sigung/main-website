@@ -10,6 +10,7 @@
         <th>Name</th>
         <th>Link</th>
         <th>Icon</th>
+        <th>Active</th>
         <th>Order</th>
         <th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
@@ -18,6 +19,7 @@
 		<td><div style="width:180px"><?php echo h($userLink['UserLink']['name']); ?></div></td>
 		<td><?php echo h($userLink['UserLink']['link']); ?></td>
         <td><?php echo h($userLink['UserLink']['icon']); ?></td>
+        <td><?php echo h($userLink['UserLink']['active']); ?></td>
         <td><?php echo h($userLink['UserLink']['order']); ?></td>
         <td class="actions" style="font-size:8px;">
             <div style="width:90px">
