@@ -220,6 +220,7 @@ class UsersController extends AppController {
                     }
                 }
             } else {
+                $this->log($this->User->validationErrors);
                 if (!empty($this->User->validationErrors))
                 {
                     $this->setFlashAndRedirect(Configure::read('User.failedRegistrationWithVE'));

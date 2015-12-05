@@ -129,7 +129,7 @@ Configure::write('User.ajaxAddRoleFailedExisting', 'Unable to add role - role al
 Configure::write('User.ajaxAddRoleFailedWithVE', 'Unable to add role');
 Configure::write('User.ajaxAddCommentFailedWithVE', 'Unable to add role');
 Configure::write('User.loginInvalid', 'Invalid login email or password.');
-Configure::write('User.loginFailed', 'There was a problem processing your login. You may not yet have rights to access the ShaolinArts user pages.');
+Configure::write('User.loginFailed', 'There was a problem processing your login. You may not currently have rights to access the ShaolinArts user pages.');
 Configure::write('User.loginFailedEmailReg', 'Pending email activation. Please look in your email inbox for an email with instructions to activate your account with ShaolinArts.com.');
 Configure::write('User.confirmRegistrationFailed', 'There was a problem confirming your user account. If the problem persists, please contact the system administrator.');
 
