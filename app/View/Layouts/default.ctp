@@ -69,9 +69,10 @@
                 </section>
                 <?php } ?>
                 <section class="contentCol cms-editable noEdit" id="mainContent">
+                    <?php echo $this->fetch('content'); ?>
                     <?php echo($pageContent); ?>
                     <?php echo $this->Form->end(); ?>
-                    <?php echo $this->fetch('content'); ?>
+
                 </section>
             </div>
 

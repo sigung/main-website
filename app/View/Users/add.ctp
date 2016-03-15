@@ -111,7 +111,7 @@ $usStates = array(
     <?php if ($this->User->isOfThisType(AuthComponent::user('id'), $this->User->ADMIN)) {  ?>
         <li class="input-group list-group-item">
             <label class="login_label">Due Date:</label>
-            <?php echo $this->Form->input('due_date', array('dateFormat'=>'DMY', 'minYear'=>date('Y')-110, 'maxYear'=>date('Y')-3+1, 'empty'=>array('- -'), 'maxLength' => 32, 'title' => 'Due Date', 'label'=>'')); ?>
+            <?php echo $this->Form->input('due_date', array('dateFormat'=>'DMY', 'minYear'=>date('Y')-110, 'maxYear'=>date('Y'), 'empty'=>array('- -'), 'maxLength' => 32, 'title' => 'Due Date', 'label'=>'')); ?>
             <?php echo $this->Form->input('due_date_comments', array(array('label'=>'', 'maxLength' => 256, 'title' => 'Due Date Comments'))); ?>
         </li>
         <li class="input-group list-group-item">

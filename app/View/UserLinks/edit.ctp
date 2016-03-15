@@ -20,6 +20,10 @@
             <?php echo $this->Form->input('icon', array('label'=>'', 'style'=>'width:300px')); ?>
         </li>
         <li class="input-group list-group-item">
+            <label style="display: block; float: left; width: 140px;">Active:</label>
+            <?php echo $this->Form->checkbox('active', array('label'=>'', 'style'=>'width:300px')); ?>
+        </li>
+        <li class="input-group list-group-item">
             <label style="display: block; float: left; width: 140px;">Order:</label>
             <?php echo $this->Form->input('order', array('label'=>'', 'style'=>'width:300px')); ?>
         </li>
