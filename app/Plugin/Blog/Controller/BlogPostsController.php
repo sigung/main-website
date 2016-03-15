@@ -61,7 +61,7 @@ class BlogPostsController extends AppController {
       $options = array_merge(
         $this->paginate,
         array('conditions' => array('BlogPost.in_rss' => 1),
-              'order' => array('BlogPost.created desc')
+              'order' => array('BlogPost.created'=>'DESC')
         )
       );
 
@@ -69,7 +69,6 @@ class BlogPostsController extends AppController {
       // default
       switch ($this->_filtered()) {
         case 'category':
-          $options = Set::merge($options, $this->_category());
           $blogPosts = $this->BlogPost->find('byCategory', $options);
           break;
         case 'tag':
@@ -88,8 +87,13 @@ class BlogPostsController extends AppController {
     }
 
     // Add in the priority order to sticky posts when not rendering RSS
-    array_unshift($this->paginate['order'], 'BlogPost.sticky DESC');
-
+    //array_unshift($this->paginate['order'], 'BlogPost.sticky DESC');
+    $this->paginate = array(
+        'limit' => 10,
+        'order' => array( // sets a default order to sort by
+          'BlogPost.created' => 'desc'
+        )
+      );
     switch ($this->_filtered()) {
       case 'category':
         $this->paginate = Set::merge($this->paginate, array('byCategory'), $this->_category());
