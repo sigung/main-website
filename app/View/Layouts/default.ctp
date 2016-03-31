@@ -36,7 +36,16 @@
 <body>
 <div class="container">
     <div class="row header">
-
+        <!--<div style="">-->
+            <!--<?php if ($this->params->controller == "pages") { ?>-->
+            <!--<?php } else if ($this->params->controller == "sandy") { ?>-->
+            <!--<div style="text-align:center; margin:auto; font-size:10px; margin-bottom:5px;">(801) 566-6364 Sandy, UT</div>-->
+            <!--<?php } else if ($this->params->controller == "taylorsville") { ?>-->
+            <!--<div style="text-align:center; margin:auto; font-size:10px;">TAYLORSVILLE STUDIO 2312 West 5400 South Taylorsville, Utah 84129 (801) 967-2300</div>-->
+            <!--<?php } else if ($this->params->controller == "glendale"){ ?>-->
+            <!--<div style="text-align:center; margin:auto; font-size:10px; margin-bottom:5px;">(623) 581-2000 Glendale, AZ</div>-->
+            <!--<?php } ?>-->
+        <!--</div>-->
         <?php echo $this->element('banner'); ?>
         <?php echo $this->element('navigation'); ?>
         <?php echo $this->Session->flash('auth'); ?>

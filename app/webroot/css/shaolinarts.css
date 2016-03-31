@@ -34,46 +34,10 @@ background: -moz-linear-gradient(center top , #454545 0%, #242424 100%) repeat s
 .flasherrormsg {
     color:red;
 }
-.btn-alert {
-    background: rgba(0, 0, 0, 0) linear-gradient(to bottom, #e16e2c 0%, #ac4103 100%) repeat scroll 0 0;
-    background-image: -webkit-linear-gradient(top, #e16e2c 0%, #ac4103 97%, #FFFFFF 98%);
-    border: 0 none;
-    border-radius: 3px;
-    box-sizing: border-box;
-    color: white !important;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 15px !important;
-    font-weight: normal !important;
-    align: center;
-    margin: 10px 0;
-    padding: 5px 25px;
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
-    text-transform: uppercase;
-    color: #da7817;
-
-}
-
-.btn-alert.selected{
-    background: rgba(0, 0, 0, 0) linear-gradient(to bottom, #1ee6c2 0%, #0df7b1) repeat scroll 0 0;
-    background-image: -webkit-linear-gradient(top, #1ee6c2 0%, #0df7b1 97%, #FFFFFF 98%);
-    text-decoration:none;
-}
-
-.btn-alert:hover {
-    text-decoration: none;
-    color:black !important;
-}
 
 .homeSlider {
     float:left;
     width:55%;
-}
-
-.visitUs {
-    float:left;
-    width:45%;
-    height:300px;
 }
 
 .sliderPic{
@@ -89,20 +53,64 @@ background: -moz-linear-gradient(center top , #454545 0%, #242424 100%) repeat s
     float:left;
 }
 
+.address {
+    font-size: 12px;
+    max-width: 120px;
+    text-wrap: normal;
+}
+
+#locations {
+    width:420px;
+    margin:auto;
+}
+
+.location-style {
+    margin: 10px 0;
+    padding: 5px 5px;
+    text-transform: uppercase;
+    text-align: center;
+    color: #444444;
+    float:left;
+}
+
+.location-style.selected{
+    background: #dddddd;
+    text-decoration:none;
+    color: black;
+}
+
+.location-style:hover {
+    text-decoration: none;
+    color:black !important;
+}
+
 @media (max-width: 980px) {
-    .btn-alert {
+    .location-style {
         font-size: 12px !important;
         font-weight: normal !important;
         align: center;
         margin: 5px 0;
         padding: 5px 10px;
+        text-shadow:none;
+    }
+    .address {
+        font-size: 10px !important;
+        max-width: 90px;
+    }
+    #locations {
+        width:430px;
+        margin:auto;
     }
 }
 
 @media (max-width:800px) {
     #mapIframe {
         clear:both;
-        height:370px;
+        height:300px;
+    }
+    #locations {
+        width:360px;
+        margin:auto;
     }
 }
 
