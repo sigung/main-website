@@ -49,14 +49,46 @@ echo $this->Html->script('jquery.bxslider/jquery.bxslider.min.js');
 
 <div class="homeSlider">
     <ul class="bxslider">
-        <li><img src="/shaolinarts/img/bowPodao.gif" title="Find your center and find balance..." class="sliderPic"/></li>
-        <li><img src="/shaolinarts/img/AZclimbingCrack.gif" title="Relax at our out door fitness training!"
-                 height="400" class="sliderPic"/></li>
-        <li><img src="/shaolinarts/img/AZclass-group.gif"
-                 title="Join our group instruction to find common goals with your peers in the arts!" class="sliderPic"/>
+        <li>
+            <img src="/shaolinarts/img/marqueeImages/clinic.png"
+                 title="Find your center and find balance..."
+                 class="sliderPic"/>
         </li>
-        <li><img src="/shaolinarts/img/youthGroup.jpg"
-                 title="Help your children discover their abilities and gain confidence." class="sliderPic"/></li>
+        <li>
+            <img src="/shaolinarts/img/marqueeImages/groupGirls.png"
+                 title="Relax at our out door fitness training!"
+                 height="400" class="sliderPic"/>
+        </li>
+        <li>
+            <img src="/shaolinarts/img/marqueeImages/lizFans.png"
+                 title="Join our group instruction to find common goals with your peers in the arts!"
+                 class="sliderPic"/>
+        </li>
+        <li>
+            <img src="/shaolinarts/img/marqueeImages/meditation.png"
+                 title="Help your children discover their abilities and gain confidence."
+                 class="sliderPic"/>
+        </li>
+        <li>
+            <img src="/shaolinarts/img/marqueeImages/roundHouse.png"
+                 title="Help your children discover their abilities and gain confidence."
+                 class="sliderPic"/>
+        </li>
+        <li>
+            <img src="/shaolinarts/img/marqueeImages/taiChi.png"
+                 title="Help your children discover their abilities and gain confidence."
+                 class="sliderPic"/>
+        </li>
+        <li>
+            <img src="/shaolinarts/img/marqueeImages/temple.png"
+                 title="Help your children discover their abilities and gain confidence."
+                 class="sliderPic"/>
+        </li>
+        <li>
+            <img src="/shaolinarts/img/marqueeImages/youthKick.png"
+                 title="Help your children discover their abilities and gain confidence."
+                 class="sliderPic"/>
+        </li>
     </ul>
 </div>
 <div id="visitUs">
