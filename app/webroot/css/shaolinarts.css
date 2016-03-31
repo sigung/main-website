@@ -84,6 +84,15 @@ background: -moz-linear-gradient(center top , #454545 0%, #242424 100%) repeat s
     color:black !important;
 }
 
+.kungfuAnim {
+    float:left;
+    border:black solid 1px;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    margin-right:10px;
+}
+
 @media (max-width: 980px) {
     .location-style {
         font-size: 12px !important;

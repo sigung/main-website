@@ -1,6 +1,7 @@
 <?php
 echo $this->Html->css('jquery.bxslider');
 echo $this->Html->script('jquery.bxslider/jquery.bxslider.min.js');
+$imagePrefix = $this->webroot;
 ?>
 
 <script type="text/javascript">
@@ -50,43 +51,43 @@ echo $this->Html->script('jquery.bxslider/jquery.bxslider.min.js');
 <div class="homeSlider">
     <ul class="bxslider">
         <li>
-            <img src="/shaolinarts/img/marqueeImages/clinic.png"
-                 title="Find your center and find balance..."
+            <img src="<?php echo $imagePrefix ?>img/marqueeImages/clinic.png"
+                 title="Training with the Masters"
                  class="sliderPic"/>
         </li>
         <li>
-            <img src="/shaolinarts/img/marqueeImages/groupGirls.png"
-                 title="Relax at our out door fitness training!"
+            <img src="<?php echo $imagePrefix ?>img/marqueeImages/groupGirls.png"
+                 title="Fun for everyone"
                  height="400" class="sliderPic"/>
         </li>
         <li>
-            <img src="/shaolinarts/img/marqueeImages/lizFans.png"
-                 title="Join our group instruction to find common goals with your peers in the arts!"
+            <img src="<?php echo $imagePrefix ?>img/marqueeImages/lizFans.png"
+                 title="Double fans"
                  class="sliderPic"/>
         </li>
         <li>
-            <img src="/shaolinarts/img/marqueeImages/meditation.png"
-                 title="Help your children discover their abilities and gain confidence."
+            <img src="<?php echo $imagePrefix ?>img/marqueeImages/meditation.png"
+                 title="Meditation with nature"
                  class="sliderPic"/>
         </li>
         <li>
-            <img src="/shaolinarts/img/marqueeImages/roundHouse.png"
-                 title="Help your children discover their abilities and gain confidence."
+            <img src="<?php echo $imagePrefix ?>img/marqueeImages/roundHouse.png"
+                 title="Reach your full potential"
                  class="sliderPic"/>
         </li>
         <li>
-            <img src="/shaolinarts/img/marqueeImages/taiChi.png"
-                 title="Help your children discover their abilities and gain confidence."
+            <img src="<?php echo $imagePrefix ?>img/marqueeImages/taiChi.png"
+                 title="Peace and awareness"
                  class="sliderPic"/>
         </li>
         <li>
-            <img src="/shaolinarts/img/marqueeImages/temple.png"
-                 title="Help your children discover their abilities and gain confidence."
+            <img src="<?php echo $imagePrefix ?>img/marqueeImages/temple.png"
+                 title="International recognition"
                  class="sliderPic"/>
         </li>
         <li>
-            <img src="/shaolinarts/img/marqueeImages/youthKick.png"
-                 title="Help your children discover their abilities and gain confidence."
+            <img src="<?php echo $imagePrefix ?>img/marqueeImages/youthKick.png"
+                 title="Flying Richard"
                  class="sliderPic"/>
         </li>
     </ul>
