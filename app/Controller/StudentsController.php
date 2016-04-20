@@ -57,8 +57,10 @@ class StudentsController extends AppController {
 
     public function sendContactMessage() {
         $contact_us_emails = array();
+        $contact_us_cc_emails = array();
         $cue = $this->SystemProperty->findByName("contact_us_email");
-        $contact_us_emails[] = $cue['SystemProperty']['value'];
+        $contact_us_cc_emails[] = $cue['SystemProperty']['value'];
+        $this->log($contact_us_cc_emails);
         $contact_us_emails[] = $this->request->data['Contact']['studio'];
         $contact_info = $this->request->data['Contact']['contact_info'];
         $body = $this->request->data['Contact']['body'];
@@ -70,7 +72,7 @@ class StudentsController extends AppController {
             $this->Session->setFlash(__("Please select the studio nearest to you and enter your email or phone so we can reach you."), 'default', array('class'=>'flasherrormsg'));
         }
         else if ($this->request->is('post')) {
-            $this->sendEmail($contact_us_emails, "ShaolinArts Website Contact Form Submission", $this->request->data['Contact']['body']."\n\nContact Info:".$contact_info);
+            $this->sendEmail($contact_us_emails, $contact_us_cc_emails, "ShaolinArts Website Contact Form Submission", $this->request->data['Contact']['body']."\n\nContact Info:".$contact_info);
             $this->Session->setFlash(__("Thankyou."), 'default', array('class'=>'flashmsg'));
         }
         else {

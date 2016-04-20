@@ -185,7 +185,7 @@ class AppController extends Controller {
         return false;
     }
 
-    protected function sendEmail($to, $subject, $body) {
+    protected function sendEmail($to, $cc, $subject, $body) {
         $mail = new PHPMailer(true);
         $pass_through_email_account = $this->SystemProperty->findByName("pass_through_email_account");
         $pass_through_email_from = $this->SystemProperty->findByName("pass_through_email_from");
@@ -217,12 +217,17 @@ class AppController extends Controller {
         {
            $mail->AddAddress($email);
         }
+        foreach($cc as $email)
+        {
+           $mail->AddCC($email);
+        }
         $mail->SetFrom($emailPassThroughAddress, $emailPassThroughFrom);
         $mail->Subject = $subject;
         $mail->Body = $body;
         try{
             $containsBadStuff = false;
             $containsBadStuff = $containsBadStuff && contains_bad_str($to);
+            $containsBadStuff = $containsBadStuff && contains_bad_str($cc);
             $containsBadStuff = $containsBadStuff && contains_bad_str($subject);
             $containsBadStuff = $containsBadStuff && contains_bad_str($body);
 
@@ -239,7 +244,7 @@ class AppController extends Controller {
         } catch(Exception $e){
             //Something went bad
             $this->log("There was a problem with the email process.".$mail);
-            $this->log($e);
+            $this->log($e->getMessage());
         }
         return false;
     }

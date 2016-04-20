@@ -455,7 +455,7 @@ class UsersController extends AppController {
         $subject = $cem['CommonEmailMessage']['subject'];
         $body = $cem['CommonEmailMessage']['body'];
 
-        return $this->sendEmail(array($user['User']['email']), $subject, $body.' '.$messageLink);
+        return $this->sendEmail(array($user['User']['email']), array(), $subject, $body.' '.$messageLink);
 
     }
 
@@ -467,7 +467,7 @@ class UsersController extends AppController {
         $subject = $cem['CommonEmailMessage']['subject'];
         $body = $cem['CommonEmailMessage']['body'];
 
-        return $this->sendEmail(array($contactUsEmail), $subject, $body.' '.$email);
+        return $this->sendEmail(array($contactUsEmail), array(), $subject, $body.' '.$email);
     }
 
     private function setupUserSearchConditions($fnameFilter, $lnameFilter, $mroleFilter, $kfroleFilter, $tcroleFilter, $studioFilter, $statusFilter, $emailFilter) {

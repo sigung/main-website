@@ -68,10 +68,11 @@
                     <?php echo $this->Form->input('content', array('type' => 'textarea', 'label'=>'', 'cols'=>'100', 'rows'=>'180', 'value'=>$pageContent, 'escape'=>false));?>
                 </section>
                 <?php } ?>
+                <?php echo $this->Form->end(); ?>
                 <section class="contentCol cms-editable noEdit" id="mainContent">
                     <?php echo $this->fetch('content'); ?>
                     <?php echo($pageContent); ?>
-                    <?php echo $this->Form->end(); ?>
+
 
                 </section>
             </div>
