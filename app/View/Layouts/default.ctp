@@ -36,9 +36,8 @@
 <body>
 <div class="container">
     <div class="row header">
-
         <?php echo $this->element('banner'); ?>
-        <?php echo $this->element('navigation'); ?>
+        <?php echo $this->element('navigation_w_contact'); ?>
         <?php echo $this->Session->flash('auth'); ?>
         <?php echo $this->Session->flash(); ?>
         <div class="row corpus">
