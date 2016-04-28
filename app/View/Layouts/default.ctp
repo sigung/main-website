@@ -31,6 +31,12 @@
         $('#ContentForPageEditForm').submit();
         hideEdit();
     }
+
+    function gotoTop()
+    {
+        $('body,html').animate({scrollTop: 0}, 800);
+    }
+
     </script>
 </head>
 <body>
@@ -71,7 +77,7 @@
                 <section class="contentCol cms-editable noEdit" id="mainContent">
                     <?php echo $this->fetch('content'); ?>
                     <?php echo($pageContent); ?>
-
+                    <a href=javascript:void(0); onclick=gotoTop();>Top</a>
 
                 </section>
             </div>
