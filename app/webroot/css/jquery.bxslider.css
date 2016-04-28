@@ -32,11 +32,11 @@
 
 .bx-wrapper .bx-viewport {
 	-moz-box-shadow: 0 0 5px #ccc;
-	-webkit-box-shadow: 0 0 5px #ccc;
-	box-shadow: 0 0 5px #ccc;
-	border:  5px solid #fff;
+	-webkit-box-shadow: 0 0 5px #efefef;
+	box-shadow: 0 0 5px #efefef;
+	border:  5px solid #efefef;
 	left: -5px;
-	background: #fff;
+	background: #efefef;
 	
 	/*fix other elements on the page moving (on Chrome)*/
 	-webkit-transform: translatez(0);
@@ -57,7 +57,7 @@
 
 .bx-wrapper .bx-loading {
 	min-height: 50px;
-	background: url(images/bx_loader.gif) center center no-repeat #fff;
+	background: url(images/bx_loader.gif) center center no-repeat #efefef;
 	height: 100%;
 	width: 100%;
 	position: absolute;
@@ -189,7 +189,7 @@
 
 .bx-wrapper .bx-caption {
 	position: absolute;
-	bottom: 0;
+	bottom: 0px;
 	left: 0;
 	background: #666\9;
 	background: rgba(80, 80, 80, 0.75);
