@@ -43,7 +43,11 @@
 <div class="container">
     <div class="row header">
         <?php echo $this->element('banner'); ?>
+        <?php if ($isSideColumn) { ?>
         <?php echo $this->element('navigation_w_contact'); ?>
+        <?php } else { ?>
+        <?php echo $this->element('navigation'); ?>
+        <?php } ?>
         <?php echo $this->Session->flash('auth'); ?>
         <?php echo $this->Session->flash(); ?>
         <div class="row corpus">

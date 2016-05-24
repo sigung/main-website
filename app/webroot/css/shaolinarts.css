@@ -45,7 +45,7 @@ background: -moz-linear-gradient(center top , #454545 0%, #242424 100%) repeat s
 }
 
 #mapIframe {
-    height:300px;
+    height:400px;
 }
 
 #visitUs {
@@ -115,7 +115,7 @@ background: -moz-linear-gradient(center top , #454545 0%, #242424 100%) repeat s
 @media (max-width:800px) {
     #mapIframe {
         clear:both;
-        height:300px;
+        height:400px;
     }
     #locations {
         width:360px;
@@ -138,7 +138,7 @@ background: -moz-linear-gradient(center top , #454545 0%, #242424 100%) repeat s
 
     #mapIframe {
         clear:both;
-        height:320px;
+        height:420px;
     }
 
     #visitUs {
@@ -149,7 +149,7 @@ background: -moz-linear-gradient(center top , #454545 0%, #242424 100%) repeat s
 @media (max-width: 360px) {
     #mapIframe {
         clear:both;
-        height:355px;
+        height:455px;
     }
 
     .sliderPic {
