@@ -45,7 +45,11 @@ background: -moz-linear-gradient(center top , #454545 0%, #242424 100%) repeat s
 }
 
 #mapIframe {
-    height:400px;
+    height:300px;
+}
+
+#mapIframe_location{
+    height:350px;
 }
 
 #visitUs {
