@@ -47,7 +47,7 @@
             <div class="col-md-12">
                 <footer>
                     <p>
-                        (623) 581-2000 Glendale, AZ &bull; (801) 566-6364 Sandy, UT &bull; (801) 967-2300 Taylorsville,
+                        (623) 581-2000 Peoria, AZ &bull; (801) 566-6364 Sandy, UT &bull; (801) 967-2300 Taylorsville,
                         UT<br/>
                         <small>&copy; Copyright 2010 - 2013 Shaolin Arts, LLC. All Rights Reserved.</small>
                     </p>

@@ -1,9 +1,13 @@
 body {
     font-family: Helvetica,Arial,sans-serif;
     text-shadow: none !important;
-    font-weight: bold;
     text-align: justify;
 }
+
+.subtitle {
+    font-weight:bold;
+}
+
 .navbar {
 background: -moz-linear-gradient(center top , #454545 0%, #242424 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
 }
@@ -45,11 +49,11 @@ background: -moz-linear-gradient(center top , #454545 0%, #242424 100%) repeat s
 }
 
 #mapIframe {
-    height:300px;
+    height:450px;
 }
 
 #mapIframe_location{
-    height:350px;
+    height:500px;
 }
 
 #visitUs {
@@ -119,7 +123,10 @@ background: -moz-linear-gradient(center top , #454545 0%, #242424 100%) repeat s
 @media (max-width:800px) {
     #mapIframe {
         clear:both;
-        height:400px;
+        height:550px;
+    }
+    #mapIframe_location{
+        height:600px;
     }
     #locations {
         width:360px;
@@ -142,9 +149,11 @@ background: -moz-linear-gradient(center top , #454545 0%, #242424 100%) repeat s
 
     #mapIframe {
         clear:both;
-        height:420px;
+        height:570px;
     }
-
+    #mapIframe_location{
+        height:620px;
+    }
     #visitUs {
         height:500px;
     }
@@ -153,9 +162,11 @@ background: -moz-linear-gradient(center top , #454545 0%, #242424 100%) repeat s
 @media (max-width: 360px) {
     #mapIframe {
         clear:both;
-        height:455px;
+        height:605px;
     }
-
+    #mapIframe_location{
+        height:655px;
+    }
     .sliderPic {
         height: 200px;
     }
