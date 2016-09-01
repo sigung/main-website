@@ -92,6 +92,12 @@ background: -moz-linear-gradient(center top , #454545 0%, #242424 100%) repeat s
     color:black !important;
 }
 
+.location-link {
+    text-decoration: none;
+    text-transform:none;
+    font-size: 10px;
+}
+
 .kungfuAnim {
     float:left;
     border:black solid 1px;

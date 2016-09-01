@@ -114,7 +114,8 @@ $imagePrefix = $this->webroot;
 </div>
 <div id="visitUs">
     <h3 style="margin:auto; text-align:center;">
-        Come Visit Us!
+        Shaolin Aarts <?php echo $this->Html->link('Come Visit Us!', '/contact_us', array('class'=>'contact-us-link')) ?>
+
     </h3>
     <div id="locations">
         <div id="SandyLink" class="location-style selected" onclick="toggleMap('Sandy')";>
@@ -122,12 +123,14 @@ $imagePrefix = $this->webroot;
             <div class="address">
                 8536 South 1300 East<br>(801) 566-6364
             </div>
+            <?php echo $this->Html->link('More Info', '/home_sandy', array('class'=>'location-link')) ?>
         </div>
         <div id="TaylorsvilleLink" class="location-style" onclick="toggleMap('Taylorsville')">
             Taylorsville, UT
             <div class="address">
                 2312 West 5400 South<br>(801) 967-2300
             </div>
+            <?php echo $this->Html->link('More Info', '/home_taylorsville', array('class'=>'location-link')) ?>
         </div>
         <div id="PeoriaLink" class="location-style" onclick="toggleMap('Peoria');">
             Peoria, AZ
@@ -135,6 +138,7 @@ $imagePrefix = $this->webroot;
                 8271 W Lake Pleasant Pkwy
                 <br>(623) 581-2000
             </div>
+            <?php echo $this->Html->link('More Info', '/home_glendale', array('class'=>'location-link')) ?>
         </div>
     </div>
     <br>
