@@ -138,7 +138,7 @@ $imagePrefix = $this->webroot;
                 8271 W Lake Pleasant Pkwy
                 <br>(623) 581-2000
             </div>
-            <?php echo $this->Html->link('More Info', '/home_glendale', array('class'=>'location-link')) ?>
+            <?php echo $this->Html->link('More Info', '/home_peoria', array('class'=>'location-link')) ?>
         </div>
     </div>
     <br>

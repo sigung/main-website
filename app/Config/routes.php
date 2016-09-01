@@ -38,13 +38,13 @@
 
 	Router::connect('/sandy/*', array('controller' => 'sandy', 'action' => 'display'));
 	Router::connect('/taylorsville/*', array('controller' => 'taylorsville', 'action' => 'display'));
-	Router::connect('/glendale/*', array('controller' => 'glendale', 'action' => 'display'));
+	Router::connect('/peoria/*', array('controller' => 'peoria', 'action' => 'display'));
 
 	Router::connect('/locations/sandy', array('controller' => 'pages', 'action' => 'display', 'home_sandy'));
 	Router::connect('/locations/taylorsville', array('controller' => 'pages', 'action' => 'display', 'home_taylorsville'));
-	Router::connect('/locations/phoenix', array('controller' => 'pages', 'action' => 'display', 'home_glendale'));
-	Router::connect('/locations/glendale', array('controller' => 'pages', 'action' => 'display', 'home_glendale'));
-	Router::connect('/locations/peoria', array('controller' => 'pages', 'action' => 'display', 'home_glendale'));
+	Router::connect('/locations/phoenix', array('controller' => 'pages', 'action' => 'display', 'home_peoria'));
+	Router::connect('/locations/glendale', array('controller' => 'pages', 'action' => 'display', 'home_peoria'));
+	Router::connect('/locations/peoria', array('controller' => 'pages', 'action' => 'display', 'home_peoria'));
 
 
 
