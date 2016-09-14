@@ -114,7 +114,7 @@ $imagePrefix = $this->webroot;
 </div>
 <div id="visitUs">
     <h3 style="margin:auto; text-align:center;">
-        Shaolin Aarts <?php echo $this->Html->link('Come Visit Us!', '/contact_us', array('class'=>'contact-us-link')) ?>
+        Shaolin Arts <?php echo $this->Html->link('Come Visit Us!', '/contact_us', array('class'=>'contact-us-link')) ?>
 
     </h3>
     <div id="locations">
