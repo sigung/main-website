@@ -115,11 +115,10 @@ $imagePrefix = $this->webroot;
 <div id="visitUs">
     <h3 style="margin:auto; text-align:center;">
         Shaolin Arts <?php echo $this->Html->link('Come Visit Us!', '/contact_us', array('class'=>'contact-us-link')) ?>
-
     </h3>
     <div id="locations">
-        <div id="SandyLink" class="location-style selected" onclick="toggleMap('Sandy')";>
-            Sandy, UT</a>
+        <div id="SandyLink" class="location-style selected" onclick="toggleMap('Sandy')">
+            Sandy, UT
             <div class="address">
                 8536 South 1300 East<br>(801) 566-6364
             </div>

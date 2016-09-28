@@ -3,9 +3,8 @@ $imagePrefix = $this->webroot;
 ?>
 
 <div class="homeSlider">
-    <img src="<?php echo $imagePrefix ?>img/Peoria Store Front.png"
-         title="Peoria Studio Store Front"
-         width="85%" />
+    <img src="<?php echo $imagePrefix ?>img/Peoria Studio.JPG"
+         title="Peoria Studio Store Front" style="width:95%;"/>
 </div>
 <div id="visitUs">
     <h3 style="margin:auto; text-align:center;">

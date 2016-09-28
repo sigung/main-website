@@ -1,7 +1,7 @@
 <?php
 $imagePrefix = $this->webroot;
 ?>
-<div class="homeSlider">
+<div class="homeSlider" style="height:430px">
     <img src="<?php echo $imagePrefix ?>img/SandyStudiofront.jpg"
          title="Sandy Studio Store Front"
             />
