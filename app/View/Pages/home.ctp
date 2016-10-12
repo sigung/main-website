@@ -1,10 +1,12 @@
 <?php
 echo $this->Html->css('jquery.bxslider');
 echo $this->Html->script('jquery.bxslider/jquery.bxslider.min.js');
+echo $this->Html->script('libgif.js');
 $imagePrefix = $this->webroot;
 ?>
 
 <script type="text/javascript">
+	var karateAnimation= null;
     var maps = [
         {location:"Sandy", src:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48472.47271632151!2d-111.8532324702722!3d40.5961387632723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x875262a882c9b445%3A0xd6ec001b41b3689b!2sShaolin+Arts!5e0!3m2!1sen!2sus!4v1449700511304",
         address:"8536 South 1300 East",
@@ -26,6 +28,13 @@ $imagePrefix = $this->webroot;
             pause: 6000,
             captions: true
         });
+
+        var element = document.getElementById('kfform');
+        if (typeof(element) != 'undefined' && element != null)
+        {
+		  karateAnimation=new SuperGif({ gif: element, on_end:function(gif) {stopAfterLoop()}, max_width:(.8)*(window.innerWidth || document.body.clientWidth)} );
+		  karateAnimation.load();
+        }
     });
 
     function toggleMap(location) {
@@ -44,10 +53,12 @@ $imagePrefix = $this->webroot;
                 return maps[i];
             }
         }
+    }
 
+    function stopAfterLoop() {
+    	karateAnimation.pause();
     }
 </script>
-
 <div class="homeSlider">
     <ul class="bxslider">
         <li>
