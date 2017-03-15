@@ -8,7 +8,7 @@ $imagePrefix = $this->webroot;
 </div>
 <div id="visitUs">
     <h3 style="margin:auto; text-align:center;">
-        Sandy Studio <?php echo $this->Html->link('Come Visit Us!', '/contact_us', array('class'=>'contact-us-link')) ?>
+        Sandy Studio <?php echo $this->Html->link('Contact Us!', '/contact_us', array('class'=>'contact-us-link')) ?>
     </h3>
     <p style="margin:auto; text-align:center;">
         Location: 8536 South 1300 East, Sandy UT

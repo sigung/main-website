@@ -7,6 +7,7 @@ $imagePrefix = $this->webroot;
 
 <script type="text/javascript">
 	var karateAnimation= null;
+	var karateAnimationW= null;
     var maps = [
         {location:"Sandy", src:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48472.47271632151!2d-111.8532324702722!3d40.5961387632723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x875262a882c9b445%3A0xd6ec001b41b3689b!2sShaolin+Arts!5e0!3m2!1sen!2sus!4v1449700511304",
         address:"8536 South 1300 East",
@@ -29,12 +30,19 @@ $imagePrefix = $this->webroot;
             captions: true
         });
 
-        var element = document.getElementById('kfform');
-        if (typeof(element) != 'undefined' && element != null)
+        var kfform = document.getElementById('kfform');
+        if (typeof(kfform) != 'undefined' && kfform != null)
         {
-		  karateAnimation=new SuperGif({ gif: element, on_end:function(gif) {stopAfterLoop()}, max_width:(.8)*(window.innerWidth || document.body.clientWidth)} );
+		  karateAnimation=new SuperGif({ gif: kfform, on_end:function(gif) {stopAfterLoop()}, max_width:(.8)*(window.innerWidth || document.body.clientWidth)} );
 		  karateAnimation.load();
         }
+
+		var kfformw = document.getElementById('kfformw');
+		if (typeof(kfformw) != 'undefined' && kfformw != null)
+		{
+		  karateAnimationW=new SuperGif({ gif: kfformw, on_end:function(gif) {stopAfterLoopW()}, max_width:300} );
+		  karateAnimationW.load();
+		}
     });
 
     function toggleMap(location) {
@@ -58,6 +66,10 @@ $imagePrefix = $this->webroot;
     function stopAfterLoop() {
     	karateAnimation.pause();
     }
+
+	function stopAfterLoopW() {
+		karateAnimationW.pause();
+	}
 </script>
 <div class="homeSlider">
     <ul class="bxslider">
@@ -125,7 +137,7 @@ $imagePrefix = $this->webroot;
 </div>
 <div id="visitUs">
     <h3 style="margin:auto; text-align:center;">
-        Shaolin Arts <?php echo $this->Html->link('Come Visit Us!', '/contact_us', array('class'=>'contact-us-link')) ?>
+        Shaolin Arts <?php echo $this->Html->link('Contact Us!', '/contact_us', array('class'=>'contact-us-link')) ?>
     </h3>
     <div id="locations">
         <div id="SandyLink" class="location-style selected" onclick="toggleMap('Sandy')">

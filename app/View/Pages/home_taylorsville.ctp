@@ -9,7 +9,7 @@ $imagePrefix = $this->webroot;
 </div>
 <div id="visitUs">
     <h3 style="margin:auto; text-align:center;">
-        Taylorsville Studio <?php echo $this->Html->link('Come Visit Us!', '/contact_us', array('class'=>'contact-us-link')) ?>
+        Taylorsville Studio <?php echo $this->Html->link('Contact Us!', '/contact_us', array('class'=>'contact-us-link')) ?>
     </h3>
     <p style="margin:auto; text-align:center;">
         Location: 2312 West 5400 South, Taylorsville UT
